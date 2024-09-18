@@ -1,0 +1,12 @@
+.floorbtn {
+  font-size: larger;
+  width: 50%;
+  text-align: center;
+  margin: auto;
+  display: block;
+  color: black;
+}
+
+.welcome {
+  text-align: center;
+}

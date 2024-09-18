@@ -1,0 +1,24 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.navbar {
+  background-color: darkred;
+}
+.heading {
+  font-size: larger;
+  color: white;
+}
+.btn {
+  font-size: larger;
+  color: white;
+  background-color: darkred;
+  border: hidden;
+  height: 100%;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: rgba(68, 68, 68, 0.28);
+  transition: 0.2s;
+}

@@ -1,0 +1,27 @@
+body {
+  text-align: center;
+}
+
+.divider {
+  border-top-color: rgb(0 0 0 / 0%);
+}
+
+
+.container {
+  height: 100%;
+}
+
+.side {
+  background-color: whitesmoke;
+  width: 10%;
+}
+
+.content {
+  background-color: white;
+  text-align: center;
+}
+
+.navbtn {
+  width: 100%;
+  height: 8%;
+}

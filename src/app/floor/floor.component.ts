@@ -10,7 +10,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {FormDialogComponent} from "../formDialog/formDialog.component";
+import {FormDialogComponent} from "../form-dialog/form-dialog.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute, ParamMap, RouterLink} from "@angular/router";

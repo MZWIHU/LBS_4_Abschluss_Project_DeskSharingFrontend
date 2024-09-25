@@ -1,0 +1,12 @@
+<mat-accordion>
+  <header class=""></header>
+  @for (department of departments ; track department.department) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Department: {{department.department}}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-admin-department></app-admin-department>
+    </mat-expansion-panel>
+  }
+
+</mat-accordion>

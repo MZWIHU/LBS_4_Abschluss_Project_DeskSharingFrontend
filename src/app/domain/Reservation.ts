@@ -12,11 +12,13 @@ export class Reservation {
   }
 
 
-  public _id: any;
+  public _id : any;
 
-  public mongoID: string;
+  public mongoID : string;
 
-  public date: string;
+  public position : number;
+
+  public date : string;
 
   public user : User;
 

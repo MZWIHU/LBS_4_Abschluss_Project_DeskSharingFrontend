@@ -1,5 +1,6 @@
 import {Reservation} from "./Reservation";
 
+
 export class Department {
   public department: string;
   public reservation: Reservation[];

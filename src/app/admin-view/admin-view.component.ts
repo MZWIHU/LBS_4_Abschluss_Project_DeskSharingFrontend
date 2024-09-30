@@ -9,7 +9,7 @@ import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell,
+  MatHeaderCell, MatHeaderCellDef,
   MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable,
   MatTableDataSource
 } from "@angular/material/table";
@@ -34,33 +34,35 @@ import {FormsModule} from "@angular/forms";
     MatRowDef,
     MatTable,
     FormsModule,
+    MatHeaderCellDef,
   ],
   templateUrl: './admin-view.component.html',
   styleUrl: './admin-view.component.css'
 })
-export  class AdminViewComponent implements OnInit, AfterViewInit{
-
-  department: string;
-  map : Map<string,Reservation[]>
+export  class AdminViewComponent implements OnInit{
   protected readonly departmentService = inject(DepartmentService);
+  department: string;
+  map : Map<string,Reservation[]> = this.departmentService.getDepartments();
+  dataSource: MatTableDataSource<Reservation> = new MatTableDataSource<Reservation>(this.map.values().next().value);
+
+
   ngOnInit(){
-     this.map = this.departmentService.getDepartments();
 
-  //  this.dataSource = new MatTableDataSource(this.map.get(this.depName));
+
+
+  }
+  getDepartmentOnclick(department :string){
+    this.department = department
+    this.dataSource = new MatTableDataSource(this.map.get(department));
   }
 
-  ngAfterViewInit() {
-    console.log(this.department);
-    console.log("AAAAAAAAAAAAAAA")
-  }
-  displayedColumns: string[] = ['select', 'desk', 'date', 'user'];
+  displayedColumns: string[] = ['select','desk', 'date', 'user'];
 
-  dataSource: MatTableDataSource<Department>;
-  selection = new SelectionModel<Map<string,Reservation[]>>(true, []);
+  selection = new SelectionModel<Reservation>(true, []);
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.map.get(this.department).length;
     return numSelected === numRows;
   }
 
@@ -72,13 +74,15 @@ export  class AdminViewComponent implements OnInit, AfterViewInit{
 
     //this.selection.select(...this.dataSource.data);
   }
-  checkboxLabel(row?: Map<string,Reservation[]>): string {
+  checkboxLabel(row?: Reservation): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
     }
-    return null;//`${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row. + 1}`
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`
   }
 
   protected readonly Reservation = Reservation;
   protected readonly Map = Map;
+
+
 }

@@ -39,41 +39,54 @@ import {FormsModule} from "@angular/forms";
   templateUrl: './admin-view.component.html',
   styleUrl: './admin-view.component.css'
 })
-export  class AdminViewComponent implements OnInit{
+export class AdminViewComponent implements OnInit {
   protected readonly departmentService = inject(DepartmentService);
   department: string;
-  map : Map<string,Reservation[]> = this.departmentService.getDepartments();
-  dataSource: MatTableDataSource<Reservation> = new MatTableDataSource<Reservation>(this.map.values().next().value);
+  reservations: Map<string, Reservation[]> = this.departmentService.getReservations();
+  dataSource = new MatTableDataSource<Reservation>();
 
 
-  ngOnInit(){
-
-
-
+  ngOnInit() {
+    let temp = this.reservations.keys().next().value;
+    let tempRes: Reservation[] = [];
+    for (let res of this.reservations.get(temp)) {
+      res.position = 1;
+      tempRes.push(res);
+    }
+    this.dataSource = new MatTableDataSource<Reservation>(tempRes);
+    console.log(this.dataSource)
   }
-  getDepartmentOnclick(department :string){
-    this.department = department
-    this.dataSource = new MatTableDataSource(this.map.get(department));
+
+  getDepartmentOnclick(department: string) {
+    this.department = department;
+    this.dataSource = new MatTableDataSource<Reservation>(this.departmentService.getListOfReservationsByDepartment(this.reservations, this.department));
   }
 
-  displayedColumns: string[] = ['select','desk', 'date', 'user'];
+  displayedColumns: string[] = ['select', 'desk', 'date', 'user'];
 
   selection = new SelectionModel<Reservation>(true, []);
 
+  setDatasource(reservations: Reservation[]) {
+    this.dataSource = new MatTableDataSource<Reservation>(reservations);
+  }
+
+
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.map.get(this.department).length;
+    const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
 
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
     }
 
-    //this.selection.select(...this.dataSource.data);
+    this.selection.select(...this.dataSource.data);
   }
+
   checkboxLabel(row?: Reservation): string {
     if (!row) {
       return `${this.isAllSelected() ? 'deselect' : 'select'} all`;

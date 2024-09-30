@@ -1,19 +1,29 @@
 <mat-accordion>
   <header class=""></header>
-  @for (entry of map.keys() ; track map.keys()) {
+  @for (entry of reservations.keys() ; track reservations.keys()) {
 
     <mat-expansion-panel (click) = "getDepartmentOnclick(entry)">
       <mat-expansion-panel-header>
         <mat-panel-title> Department: {{entry}}</mat-panel-title>
       </mat-expansion-panel-header>
+      {{setDatasource(this.departmentService.getListOfReservationsByDepartment(reservations, entry))}}
       <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="select">
-     <mat-checkbox (change)="$event ? toggleAllRows() : null"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()"
-                      [aria-label]="checkboxLabel()">
-        </mat-checkbox>
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                          [checked]="selection.hasValue() && isAllSelected()"
+                          [indeterminate]="selection.hasValue() && !isAllSelected()"
+                          [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()"
+                          (change)="$event ? selection.toggle(row) : null"
+                          [checked]="selection.isSelected(row)"
+                          [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
         </ng-container>
         <ng-container matColumnDef="desk">
           <th mat-header-cell *matHeaderCellDef> Desk</th>

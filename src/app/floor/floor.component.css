@@ -1,4 +1,25 @@
-.heading {
+.mySVG {
   text-align: center;
 }
 
+.nav {
+  text-align: center;
+  display: block;
+}
+
+.navBtn {
+  font-size: x-large;
+  margin: 15px;
+}
+
+.table {
+  width: 95%;
+  display: block;
+  margin: auto;
+}
+
+.filter {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  width: 100%;
+}

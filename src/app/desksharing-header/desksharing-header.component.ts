@@ -13,7 +13,7 @@ import {RouterLink} from "@angular/router";
     MatToolbarModule, MatButtonModule, MatIconModule, MatRipple, RouterLink
   ],
   templateUrl: './desksharing-header.component.html',
-  styleUrl: './desksharing-header.component.css'
+  styleUrl: './desksharing-header.component.scss'
 })
 export class DesksharingHeaderComponent{
 

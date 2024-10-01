@@ -35,7 +35,7 @@ export class AppComponent {
 
     router.events.subscribe(_ => {
       //console.log(router.url);
-      this.open = !router.url.startsWith("/#state") && router.url != "/";
+      this.open = !router.url.startsWith("/#state") && router.url != "/admin" && router.url !="/";
       //console.log(!router.url.startsWith("/#state"))
       //console.log(this.open)
     })

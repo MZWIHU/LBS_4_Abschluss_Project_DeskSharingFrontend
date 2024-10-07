@@ -2,6 +2,25 @@
   <mat-toolbar-row>
     <span class="heading" routerLink="">DESKSHARING</span>
     <span class="example-spacer"></span>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+      <mat-icon class="menuIcon" >more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item >
+        <mat-icon>qr_code_scanner</mat-icon>
+        <span>Scan QR Code</span>
+      </button>
+      @if (open){
+        <button mat-menu-item >
+          <mat-icon>qr_code_2</mat-icon>
+          <span>Generate QR Codes</span>
+        </button>
+      <button mat-menu-item >
+        <mat-icon>equalizer</mat-icon>
+        <span>View Statistics</span>
+      </button>
+      }
+    </mat-menu>
     <button mat-fab class="btn" (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>

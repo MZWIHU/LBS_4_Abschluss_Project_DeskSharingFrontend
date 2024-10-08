@@ -1,9 +1,9 @@
 <desksharing-header></desksharing-header>
 <mat-sidenav-container class="container">
   <mat-sidenav mode="side" [opened]="open" class="side">
-    <button mat-button type="button" class="navbtn" routerLink="/overview">Overview</button>
+    <button mat-button type="button" class="navbtn" style="color: black" routerLink="/overview">Reservation</button>
     @for (i of numberOfFloorsCollection; track i) {
-      <button mat-button type="button" class="navbtn" (click)="redirectTo('/floor/' + i)">{{ i }}. Floor</button>
+      <button mat-button type="button" class="navbtn" style="color: black" (click)="redirectTo('/floor/' + i)">{{ i }}. Floor</button>
       <br>
     }
   </mat-sidenav>

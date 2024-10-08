@@ -19,6 +19,9 @@ import {Reservation} from "../domain/Reservation";
 import {MatDialog} from "@angular/material/dialog";
 //import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
+import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {ReservationService} from "../../service/reservation.service";
 //import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 
 @Component({
@@ -51,14 +54,14 @@ export class ReservationOverviewComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getData();
+    this.getData('');
     this.dialog.afterAllClosed.pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {
-      this.getData()
+      this.getData('')
     })
   }
 
-  getData() {
-    this.reservationService.getReservationByUserMail().pipe(takeUntilDestroyed(this.destroyRef))
+  getData(mail: string) {
+    this.reservationService.getReservationByUserMail(mail).pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(
         response => {
           this.dataSource = response;

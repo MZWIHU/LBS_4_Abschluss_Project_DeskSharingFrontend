@@ -47,15 +47,14 @@ export class AdminViewComponent implements OnInit {
   reservations: Map<string, Reservation[]> = new Map<string, Reservation[]>()
 
 
-
   ngOnInit() {
-    this.departmentService.getReservations().subscribe(data =>{
+    this.departmentService.getReservations().subscribe(data => {
       this.reservations = data.reservations;
+      console.log(this.reservations)
     });
     let temp = this.reservations.keys().next().value;
     let tempRes: Reservation[] = [];
-    if(this.reservations.size > 1)
-    {
+    if (this.reservations.size > 1) {
       for (let res of this.reservations.get(temp)) {
         res.position = 1;
         tempRes.push(res);
@@ -73,11 +72,6 @@ export class AdminViewComponent implements OnInit {
   setDatasource(reservations: Reservation[]) {
     this.departmentService.dataSource = new MatTableDataSource<Reservation>(reservations);
   }
-
-
-
-
-
 
 
 }

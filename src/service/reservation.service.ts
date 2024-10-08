@@ -54,8 +54,7 @@ export class ReservationService {
 
 
     //this.http.post("https://desksharing.onrender.com/userReservations?userMail=", request, {headers}).subscribe(
-    //return this.http.get<Reservation[]>("http://localhost:8090/userReservations?userMail=" + userMail, {headers})
-    return this.http.get<Reservation[]>("https://desksharing.onrender.com/userReservations?userMail=" + userMail, {headers})
+    return this.http.get<Reservation[]>("http://localhost:8090/getreservationbyuser?userMail=" + userMail, {headers})
   }
 
   updateReservation(reservation: Reservation){
@@ -64,7 +63,7 @@ export class ReservationService {
     headers.set("Accept", "application/json");
 
     console.log("SEND")
-     this.http.put("http://localhost:8090/reservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
+     this.http.put("http://localhost:8090/updatereservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
     //this.http.put("https://desksharing.onrender.com/reservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
       _ =>{}
     )

@@ -61,7 +61,7 @@ export class ReservationOverviewComponent implements OnInit {
   }
 
   getData(mail: string) {
-    this.reservationService.getReservationByUserMail(mail).pipe(takeUntilDestroyed(this.destroyRef))
+    this.reservationService.getReservationByUserMail("test@test.com").pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(
         response => {
           this.dataSource = response;

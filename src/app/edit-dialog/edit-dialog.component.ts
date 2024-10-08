@@ -1,13 +1,22 @@
 import {Component, inject} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogContent, MatDialogRef} from "@angular/material/dialog";
 import {Reservation} from "../domain/Reservation";
 import {ReservationService} from "../../service/reservation.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {MatCard} from "@angular/material/card";
+import {MatCalendar} from "@angular/material/datepicker";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-edit-dialog',
   standalone: true,
-  imports: [],
+  imports: [
+    MatDialogContent,
+    MatCard,
+    MatCalendar,
+    MatButton,
+    ReactiveFormsModule
+  ],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.css'
 })

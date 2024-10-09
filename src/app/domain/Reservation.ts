@@ -4,24 +4,26 @@ import {Desk} from "./Desk";
 /*
 class representing a reservation
  */
-export class Reservation {
+export interface Reservation {
+
+  /*
   constructor(date: string, user : User, desk: Desk) {
     this.date = date;
     this.user = user;
     this.desk = desk;
   }
 
+*/
+   _id : any;
 
-  public _id : any;
+   mongoID : string;
 
-  public mongoID : string;
+   position : number;
 
-  public position : number;
+  date : string;
 
-  public date : string;
+  user : User;
 
-  public user : User;
-
-  public desk : Desk;
+  desk : Desk;
 
 }

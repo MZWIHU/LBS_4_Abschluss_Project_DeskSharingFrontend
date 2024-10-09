@@ -4,8 +4,9 @@ import {Reservation} from "../domain/Reservation";
 import {ReservationService} from "../../service/reservation.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatCard} from "@angular/material/card";
-import {MatCalendar} from "@angular/material/datepicker";
+import {MatCalendar, MatDatepickerInput} from "@angular/material/datepicker";
 import {MatButton} from "@angular/material/button";
+import {provideNativeDateAdapter} from "@angular/material/core";
 
 @Component({
   selector: 'app-edit-dialog',
@@ -13,12 +14,14 @@ import {MatButton} from "@angular/material/button";
   imports: [
     MatDialogContent,
     MatCard,
+    MatDatepickerInput,
     MatCalendar,
     MatButton,
     ReactiveFormsModule
   ],
   templateUrl: './edit-dialog.component.html',
-  styleUrl: './edit-dialog.component.css'
+  styleUrl: './edit-dialog.component.css',
+  providers:[provideNativeDateAdapter()]
 })
 export class EditDialogComponent {
   private dialogRef: MatDialogRef<EditDialogComponent> = inject(MatDialogRef<EditDialogComponent>)
@@ -51,15 +54,13 @@ export class EditDialogComponent {
 
 
   updateReservation() {
-    this.toUpdate.date = this.dateUpdateForm.get('date').value.toUTCString();
+    this.toUpdate.date = this.dateUpdateForm.get('date').value.toDateString();
     this.reservationService.updateReservation(this.toUpdate);
   }
 
   //updates form if the user changes the input
   updateFormDate(value: any) {
     this.dateUpdateForm.get('date').setValue(value);
-    this.dateUpdateForm.controls.date.value.setHours(3)
-    this.dateUpdateForm.controls.date.value.setMinutes(1  )
   }
 
   closeDialog() {

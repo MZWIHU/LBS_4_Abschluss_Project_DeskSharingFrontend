@@ -50,7 +50,7 @@ export class AdminViewComponent implements OnInit {
   ngOnInit() {
     this.departmentService.getReservations().subscribe(data => {
       this.reservations = data.reservations;
-      console.log(this.reservations)
+      console.log("#############" + data.reservations.get('ACPR'))
     });
     let temp = this.reservations.keys().next().value;
     let tempRes: Reservation[] = [];
@@ -61,6 +61,7 @@ export class AdminViewComponent implements OnInit {
       }
     }
     this.departmentService.dataSource = new MatTableDataSource<Reservation>(tempRes);
+    console.log("AFTER SUB")
   }
 
   getDepartmentOnclick(department: string) {

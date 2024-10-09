@@ -1,33 +1,19 @@
-import {
-  AfterViewInit,
-  Component,
-  DestroyRef,
-  ElementRef,
-  HostListener,
-  inject,
-  NgZone,
-  OnInit,
-  ViewChild
-} from '@angular/core';
+import {Component, DestroyRef, inject, NgZone, ViewChild} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {FormDialogComponent} from "../form-dialog/form-dialog.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {ActivatedRoute, ParamMap, RouterLink} from "@angular/router";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 import {MatToolbarRow} from "@angular/material/toolbar";
 import {MatButton} from "@angular/material/button";
 import {switchMap} from "rxjs";
-import {Desk} from "../domain/Desk";
 import {Reservation} from "../domain/Reservation";
-import {User} from "../domain/User";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {MatTableDataSource, MatTableModule
-} from "@angular/material/table";
+import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatInputModule} from "@angular/material/input";
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from "@angular/material/sort";
-import {HttpClient} from "@angular/common/http";
 import {MapComponent} from "../map/map.component";
 import {ReservationService} from "../../service/reservation.service";
 
@@ -44,7 +30,8 @@ import {ReservationService} from "../../service/reservation.service";
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MapComponent
+    MapComponent,
+    MatDialogModule
   ],
   templateUrl: './floor.component.html',
   styleUrl: './floor.component.css'
@@ -83,15 +70,13 @@ export class FloorComponent {
 
   //opens the dialog and passes the necessary data to it
   openDialog(deskID: number, reservations: Reservation[]): void {
-    this.zone.run(_ => {
       const dialogRef = this.dialog.open(FormDialogComponent, {
         data: {
           floor: this.floor,
           deskID: deskID,
           reservations: reservations
-        }
+        },
       });
-    })
   }
 
   //gets the floor currently on from the url path

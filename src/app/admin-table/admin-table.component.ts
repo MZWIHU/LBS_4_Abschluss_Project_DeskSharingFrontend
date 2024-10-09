@@ -81,6 +81,6 @@ export class AdminTableComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`
   }
 
-  protected readonly Reservation = Reservation;
+  //protected readonly Reservation = Reservation;
   protected readonly Map = Map;
 }

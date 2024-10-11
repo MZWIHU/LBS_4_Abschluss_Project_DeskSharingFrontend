@@ -1,8 +1,8 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {DestroyRef, inject, Injectable} from '@angular/core';
-import {Reservation} from "../app/domain/Reservation";
-import {User} from "../app/domain/User";
-import {Desk} from "../app/domain/Desk";
+import {Reservation} from "../domain/Reservation";
+import {User} from "../domain/User";
+import {Desk} from "../domain/Desk";
 import {Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 

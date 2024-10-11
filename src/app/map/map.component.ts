@@ -4,7 +4,7 @@ import {FormDialogComponent} from "../form-dialog/form-dialog.component";
 import {switchMap} from "rxjs";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {ReservationService} from "../../service/reservation.service";
+import {ReservationService} from "../service/reservation.service";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {MatTableDataSource} from "@angular/material/table";
 

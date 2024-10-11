@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogContent, MatDialogRef} from "@angular/material/dialog";
 import {Reservation} from "../domain/Reservation";
-import {ReservationService} from "../../service/reservation.service";
+import {ReservationService} from "../service/reservation.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatCard} from "@angular/material/card";
 import {MatCalendar, MatDatepickerInput} from "@angular/material/datepicker";

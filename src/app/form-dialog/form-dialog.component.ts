@@ -1,6 +1,6 @@
 import {Component, OnInit, inject} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ReservationService} from "../../service/reservation.service";
+import {ReservationService} from "../service/reservation.service";
 import {MatButton} from "@angular/material/button";
 import {
   MAT_DIALOG_DATA,

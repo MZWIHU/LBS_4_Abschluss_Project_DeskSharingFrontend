@@ -15,7 +15,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from "@angular/material/sort";
 import {MapComponent} from "../map/map.component";
-import {ReservationService} from "../../service/reservation.service";
+import {ReservationService} from "../service/reservation.service";
 
 @Component({
   selector: 'app-floor',

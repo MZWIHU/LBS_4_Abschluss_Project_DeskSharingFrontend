@@ -45,18 +45,19 @@ import {AdminTableComponent} from "../admin-table/admin-table.component";
 export class AdminViewComponent implements OnInit {
   protected readonly departmentService = inject(DepartmentService);
   department: string;
-  reservations: Map<string, Reservation[]> = new Map<string, Reservation[]>()
+  reservations: Map<string, Reservation[]> = new Map();
 
 
   ngOnInit() {
+    // this.reservations = new Map<string,Reservation[]>
     this.departmentService.getReservations().subscribe(data => {
-      this.reservations = data.reservations;
-      console.log("#############" + data.reservations.get('ACPR'))
+      this.reservations = new Map(Object.entries(data));
     });
-    let temp = this.reservations.keys().next().value;
+    this.department = this.reservations.keys().next().value;
+
     let tempRes: Reservation[] = [];
     if (this.reservations.size > 1) {
-      for (let res of this.reservations.get(temp)) {
+      for (let res of this.reservations.get(this.department).values()) {
         res.position = 1;
         tempRes.push(res);
       }
@@ -68,7 +69,6 @@ export class AdminViewComponent implements OnInit {
   getDepartmentOnclick(department: string) {
     this.department = department;
     this.departmentService.dataSource = new MatTableDataSource<Reservation>(this.departmentService.getListOfReservationsByDepartment(this.reservations, this.department));
-    this.departmentService.setDatasource(this.departmentService.dataSource);
   }
 
   setDatasource(reservations: Reservation[]) {

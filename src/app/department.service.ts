@@ -35,11 +35,11 @@ export class DepartmentService {
 
     return depReservations;
   }
-  getReservations(): Observable<AdminReservationResponse> {
+  getReservations(): Observable<Map<string,Reservation[]>> {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
-    return this.http.get<AdminReservationResponse>('http://localhost:8090/getalladminreservation');
+    return this.http.get<Map<string,Reservation[]>>('http://localhost:8090/getalladminreservation');
   }
 
 

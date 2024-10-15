@@ -30,7 +30,7 @@ export class DesksharingHeaderComponent{
   constructor(private router: Router) {
 
     router.events.subscribe(_ => {
-      //console.log(router.url);
+      console.log(router.url);
       this.open = !router.url.startsWith("/#state") && router.url == "/admin";
 
     });
@@ -38,7 +38,9 @@ export class DesksharingHeaderComponent{
 
 
   }
-
+  statistics(){
+    this.router.navigate([("statistics")]);
+  }
   protected readonly generate = generate;
   protected readonly webkitURL = webkitURL;
   protected readonly Location = Location;

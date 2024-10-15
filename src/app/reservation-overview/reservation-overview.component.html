@@ -1,6 +1,7 @@
 <div class="heading">
   <h1>Reservations</h1>
 </div>
+<div class="tablediv">
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="desk">
     <th mat-header-cell *matHeaderCellDef> Desk</th>
@@ -32,3 +33,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+</div>

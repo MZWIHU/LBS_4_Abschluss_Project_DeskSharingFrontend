@@ -3,6 +3,8 @@ import {DestroyRef, inject, Injectable} from '@angular/core';
 import {Reservation} from "../domain/Reservation";
 import {Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {User} from "../domain/User";
+import {Desk} from "../domain/Desk";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +25,7 @@ export class ReservationService {
     headers.set("Accept", "application/json");
 
 
-    return this.http.get<Reservation[]>('http://localhost:8090/getreservationfordesk?deskID=' + targetID + "&floor=" + floor, {headers})
+    return this.http.get<Reservation[]>('http://localhost:8090/getreservationfordesk?deskId=' + targetID + "&floor=" + floor, {headers})
   }
 
   makeReservation(date: Date, floor: number, deskID: number) {
@@ -32,10 +34,10 @@ export class ReservationService {
     headers.set("Accept", "application/json");
 
 
-    let request = null;/*new Reservation(date.toDateString(),
-      new User("test@test.com", "Martin", "TEST", "ACPR")
+    let request = new Reservation(date.toDateString(),
+      new User("test@test.com", "Martin", "TEST","ZWM", "ACPR")
       , new Desk(deskID, floor));
-*/
+
     //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(
     this.http.post("http://localhost:8090/createreservation", request, {headers}).subscribe(
       response => {

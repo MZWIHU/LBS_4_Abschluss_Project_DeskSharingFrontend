@@ -38,25 +38,26 @@ import {Reservation} from "../domain/Reservation";
 })
 export class AdminTableComponent implements OnInit {
   protected readonly departmentService = inject(DepartmentService);
-  reservations: Map<string, Reservation[]> = new Map<string, Reservation[]>();
-
+  reservations: Map<string, Reservation[]> = new Map();
+  temp : string;
+  tempRes:string;
   dataSource = this.departmentService.dataSource;
 
   ngOnInit() {
+     this.reservations = new Map<string,Reservation[]>();
     this.departmentService.getReservations().subscribe(data =>{
-       this.reservations = data.reservations;
+      this.reservations = new Map(Object.entries(data));
     });
     let temp = this.reservations.keys().next().value;
     let tempRes: Reservation[] = [];
-    if (this.reservations.get(temp).length > 1){
+    //if (this.reservations.get(temp)?.length > 0){
       for (let res of this.reservations.get(temp)) {
-        res.position = 1;
+        res.position++ ;
         tempRes.push(res);
       }
-    }
+    //}
+    this.dataSource = this.departmentService.dataSource;
 
-    this.dataSource = new MatTableDataSource<Reservation>(tempRes);
-    this.departmentService.setDatasource(this.dataSource)
   }
 
   displayedColumns: string[] = ['select', 'desk', 'date', 'user'];

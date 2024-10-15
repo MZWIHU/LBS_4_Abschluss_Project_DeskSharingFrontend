@@ -5,6 +5,7 @@ import {AdminViewComponent} from "./admin-view/admin-view.component";
 import {FloorComponent} from "./floor/floor.component";
 import {ReservationOverviewComponent} from "./reservation-overview/reservation-overview.component";
 import {CheckInComponent} from "./check-in/check-in.component";
+import {StatisticsComponent} from "./statistics/statistics.component";
 
 
 export const routes: Routes = [
@@ -12,6 +13,7 @@ export const routes: Routes = [
   {path: '', component: LandingpageComponent},
   {path: 'overview', component: ReservationOverviewComponent},
   {path: 'admin', component: AdminViewComponent},
+  {path: 'statistics', component: StatisticsComponent},
   {path: 'checkin/floor/:floor/desk/:desk', component: CheckInComponent},
 ];
 

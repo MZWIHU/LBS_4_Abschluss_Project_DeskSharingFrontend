@@ -1,4 +1,4 @@
-import {Component, OnInit, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ReservationService} from "../service/reservation.service";
 import {MatButton} from "@angular/material/button";
@@ -15,14 +15,13 @@ import {MatCalendar, MatDatepickerInput} from "@angular/material/datepicker";
 import {provideNativeDateAdapter} from "@angular/material/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
-import {Reservation} from "../domain/Reservation";
 import {DialogData} from "../domain/DialogData";
 
 
 @Component({
   selector: 'app-popup',
   standalone: true,
-  templateUrl: './form-dialog.component.html',
+  templateUrl: './reservation-dialog.component.html',
   imports: [
     ReactiveFormsModule,
     MatButton,
@@ -37,13 +36,13 @@ import {DialogData} from "../domain/DialogData";
     MatTab
   ],
   providers: [provideNativeDateAdapter()],
-  styleUrl: './form-dialog.component.css'
+  styleUrl: './reservation-dialog.component.css'
 })
-export class FormDialogComponent implements OnInit {
+export class ReservationDialogComponent implements OnInit {
 
   private reservationService: ReservationService = inject(ReservationService);
 
-  private dialogRef: MatDialogRef<FormDialogComponent> = inject(MatDialogRef<FormDialogComponent>);
+  private dialogRef: MatDialogRef<ReservationDialogComponent> = inject(MatDialogRef<ReservationDialogComponent>);
 
   private snackBar: MatSnackBar = inject(MatSnackBar);
 

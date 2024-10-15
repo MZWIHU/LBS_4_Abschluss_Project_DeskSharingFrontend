@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DesksharingHeaderComponent } from './desksharing-header.component';
+import {DesksharingHeaderComponent} from './desksharing-header.component';
 
 describe('DesksharingHeaderComponent', () => {
   let component: DesksharingHeaderComponent;

@@ -1,8 +1,5 @@
 import {DestroyRef, inject, Injectable} from '@angular/core';
-import {Department} from "./domain/Department";
 import {Reservation} from "./domain/Reservation";
-import {User} from "./domain/User";
-import {Desk} from "./domain/Desk";
 import {MatTableDataSource} from "@angular/material/table";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";

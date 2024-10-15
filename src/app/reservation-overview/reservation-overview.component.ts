@@ -1,4 +1,3 @@
-
 import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {
   MatCell,
@@ -22,6 +21,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 import {ReservationService} from "../service/reservation.service";
+
 //import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 
 @Component({

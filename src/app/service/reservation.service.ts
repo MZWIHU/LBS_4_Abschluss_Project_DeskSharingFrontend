@@ -1,8 +1,6 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {DestroyRef, inject, Injectable} from '@angular/core';
 import {Reservation} from "../domain/Reservation";
-import {User} from "../domain/User";
-import {Desk} from "../domain/Desk";
 import {Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
@@ -28,7 +26,7 @@ export class ReservationService {
     return this.http.get<Reservation[]>('http://localhost:8090/getreservationfordesk?deskID=' + targetID + "&floor=" + floor, {headers})
   }
 
-  makeReservation(date: Date,  floor: number, deskID: number) {
+  makeReservation(date: Date, floor: number, deskID: number) {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
@@ -39,7 +37,7 @@ export class ReservationService {
       , new Desk(deskID, floor));
 */
     //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(
-      this.http.post("http://localhost:8090/createreservation", request, {headers}).subscribe(
+    this.http.post("http://localhost:8090/createreservation", request, {headers}).subscribe(
       response => {
         window.location.reload()
         //console.log(response)
@@ -57,17 +55,17 @@ export class ReservationService {
     return this.http.get<Reservation[]>("http://localhost:8090/getreservationbyuser?userMail=" + userMail, {headers})
   }
 
-  updateReservation(reservation: Reservation){
+  updateReservation(reservation: Reservation) {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
 
     console.log("SEND")
-     this.http.put("http://localhost:8090/updatereservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
-    //this.http.put("https://desksharing.onrender.com/reservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
-      _ =>{}
+    this.http.put("http://localhost:8090/updatereservation", reservation, {headers}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
+      //this.http.put("https://desksharing.onrender.com/reservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
+      _ => {
+      }
     )
-
   }
 
   getReservationsByFloor(floor: number) {
@@ -81,12 +79,34 @@ export class ReservationService {
     //return this.http.get<Reservation[]>("https://desksharing.onrender.com/reservations-by-floor?floor=" + floor, {headers})
   }
 
-  deleteReservation(reservation: Reservation)  {
+  deleteReservation(reservation: Reservation) {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
     console.log("Delete")
-    return this.http.delete("http://localhost:8090/deletereservation", { headers: headers, body: reservation })
-      .pipe(takeUntilDestroyed(this.destroyRef)).subscribe( _ =>{})
+    return this.http.delete("http://localhost:8090/deletereservation", {headers: headers, body: reservation})
+      .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {
+      })
+  }
+
+  getReservationByDesk(floor: string, desk: string) {
+    const headers: HttpHeaders = new HttpHeaders();
+    headers.set("Content-Type", "application/json");
+    headers.set("Accept", "application/json");
+    console.log("Delete")
+    return this.http.get<Reservation>("http://localhost:8090/getreservationfordesk?floor=" + floor + "&deskId=" + desk, {headers: headers});
+  }
+
+  checkIn(reservation: Reservation) {
+    const headers: HttpHeaders = new HttpHeaders();
+    headers.set("Content-Type", "application/json");
+    headers.set("Accept", "application/json");
+
+    console.log("SEND")
+    this.http.put("http://localhost:8090/checkin", reservation, {headers}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
+      //this.http.put("https://desksharing.onrender.com/reservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
+      _ => {
+      }
+    )
   }
 }

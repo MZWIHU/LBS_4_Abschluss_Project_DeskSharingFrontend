@@ -1,12 +1,11 @@
 import {Component, DestroyRef, inject} from '@angular/core';
 import {Reservation} from "../domain/Reservation";
-import {FormDialogComponent} from "../form-dialog/form-dialog.component";
 import {switchMap} from "rxjs";
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ReservationService} from "../service/reservation.service";
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatDialog} from "@angular/material/dialog";
+import {ReservationDialogComponent} from "../reservation-dialog/reservation-dialog.component";
 
 @Component({
   selector: 'app-map',
@@ -36,7 +35,7 @@ export class MapComponent {
   }
 
   openDialog(deskID: number, reservations: Reservation[]): void {
-    const dialogRef = this.dialog.open(FormDialogComponent, {
+    const dialogRef = this.dialog.open(ReservationDialogComponent, {
       data: {
         floor: this.floor,
         deskID: deskID,

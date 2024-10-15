@@ -1,6 +1,6 @@
 import {Component, DestroyRef, inject, NgZone, ViewChild} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {FormDialogComponent} from "../form-dialog/form-dialog.component";
+import {ReservationDialogComponent} from "../reservation-dialog/reservation-dialog.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {ActivatedRoute, ParamMap, RouterLink} from "@angular/router";
@@ -70,7 +70,7 @@ export class FloorComponent {
 
   //opens the dialog and passes the necessary data to it
   openDialog(deskID: number, reservations: Reservation[]): void {
-      const dialogRef = this.dialog.open(FormDialogComponent, {
+      const dialogRef = this.dialog.open(ReservationDialogComponent, {
         data: {
           floor: this.floor,
           deskID: deskID,

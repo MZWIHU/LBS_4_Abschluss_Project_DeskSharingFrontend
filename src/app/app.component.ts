@@ -6,6 +6,7 @@ import {MatDivider} from "@angular/material/divider";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {KeycloakService} from "./service/keycloak-service.service";
+
 //import {KeycloakService} from "./service/keycloak.service";
 
 @Component({
@@ -36,7 +37,7 @@ export class AppComponent {
 
     router.events.subscribe(_ => {
       //console.log(router.url);
-      this.open = !router.url.startsWith("/#state") && router.url != "/";
+      this.open = !router.url.startsWith("/#state") && router.url != "/" && router.url == "/checkin";
       //console.log(!router.url.startsWith("/#state"))
       //console.log(this.open)
     })

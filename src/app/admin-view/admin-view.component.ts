@@ -1,19 +1,20 @@
-import {AfterViewInit, Component, inject, Input, OnInit} from '@angular/core';
-import {MatAccordion, MatExpansionModule, MatExpansionPanel, MatExpansionPanelTitle} from "@angular/material/expansion";
-import {Department} from "../domain/Department";
+import {Component, inject, OnInit} from '@angular/core';
+import {MatAccordion, MatExpansionModule} from "@angular/material/expansion";
 import {Reservation} from "../domain/Reservation";
-import {User} from "../domain/User";
-import {Desk} from "../domain/Desk";
 import {DepartmentService} from "../department.service";
 import {
   MatCell,
   MatCellDef,
   MatColumnDef,
-  MatHeaderCell, MatHeaderCellDef,
-  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow,
+  MatHeaderRowDef,
+  MatRow,
+  MatRowDef,
+  MatTable,
   MatTableDataSource
 } from "@angular/material/table";
-import {SelectionModel} from "@angular/cdk/collections";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
 import {AdminTableComponent} from "../admin-table/admin-table.component";

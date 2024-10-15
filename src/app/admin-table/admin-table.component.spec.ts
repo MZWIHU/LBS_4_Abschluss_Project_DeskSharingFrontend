@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdminTableComponent } from './admin-table.component';
+import {AdminTableComponent} from './admin-table.component';
 
 describe('AdminTableComponent', () => {
   let component: AdminTableComponent;

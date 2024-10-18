@@ -14,6 +14,7 @@ export class AuthService {
     localStorage.setItem("firstName", userProfile.firstName);
     localStorage.setItem("lastName", userProfile.lastName);
     localStorage.setItem("token", userProfile.token);
+    localStorage.setItem("plz", userProfile.attributes["postal_code"] as string);
   }
 
   getInfo(): UserProfile {

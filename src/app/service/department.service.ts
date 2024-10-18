@@ -1,9 +1,9 @@
 import {DestroyRef, inject, Injectable} from '@angular/core';
-import {Reservation} from "./domain/Reservation";
+import {Reservation} from "../domain/Reservation";
 import {MatTableDataSource} from "@angular/material/table";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AdminReservationResponse} from "./domain/AdminReservationResponse";
+import {AdminReservationResponse} from "../domain/AdminReservationResponse";
 
 @Injectable({
   providedIn: 'root'

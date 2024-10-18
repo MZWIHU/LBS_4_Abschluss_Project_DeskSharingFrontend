@@ -6,6 +6,8 @@ import {FloorComponent} from "./floor/floor.component";
 import {ReservationOverviewComponent} from "./reservation-overview/reservation-overview.component";
 import {CheckInComponent} from "./check-in/check-in.component";
 import {StatisticsComponent} from "./statistics/statistics.component";
+import {ChartComponent} from "ng-apexcharts";
+import {GraphComponent} from "./graph/graph.component";
 
 
 export const routes: Routes = [
@@ -15,6 +17,7 @@ export const routes: Routes = [
   {path: 'admin', component: AdminViewComponent},
   {path: 'statistics', component: StatisticsComponent},
   {path: 'checkin/floor/:floor/desk/:desk', component: CheckInComponent},
+  {path: 'chart', component: GraphComponent}
 ];
 
 @NgModule({

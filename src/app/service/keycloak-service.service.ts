@@ -45,6 +45,7 @@ export class KeycloakService {
       this._profile = (await this.keycloak.loadUserProfile()) as UserProfile;
       this._profile.token = this.keycloak.token;
       this._profile.username = this.profile.username;
+      this._profile.attributes = this.profile.attributes;
       console.log(this._profile)
       this.authService.storeInfo(this._profile)
 

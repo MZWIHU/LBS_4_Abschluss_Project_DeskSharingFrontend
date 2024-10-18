@@ -18,3 +18,7 @@
 .heading {
   font-weight: normal;
 }
+
+.svgDiv {
+  overflow: scroll;
+}

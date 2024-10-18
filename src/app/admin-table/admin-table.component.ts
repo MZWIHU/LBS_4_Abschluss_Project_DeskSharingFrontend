@@ -14,7 +14,7 @@ import {
 } from "@angular/material/table";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {SelectionModel} from "@angular/cdk/collections";
-import {DepartmentService} from "../department.service";
+import {DepartmentService} from "../service/department.service";
 import {Reservation} from "../domain/Reservation";
 
 @Component({

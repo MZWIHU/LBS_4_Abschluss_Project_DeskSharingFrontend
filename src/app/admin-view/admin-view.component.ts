@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MatAccordion, MatExpansionModule} from "@angular/material/expansion";
 import {Reservation} from "../domain/Reservation";
-import {DepartmentService} from "../department.service";
+import {DepartmentService} from "../service/department.service";
 import {
   MatCell,
   MatCellDef,

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {MatButtonModule} from "@angular/material/button";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
@@ -6,6 +6,7 @@ import {MatRipple} from "@angular/material/core";
 import {Router, RouterLink} from "@angular/router";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {generate} from "rxjs";
+import {KeycloakService} from "../service/keycloak-service.service";
 
 //import {KeycloakService} from "../service/keycloak.service";
 
@@ -20,11 +21,11 @@ import {generate} from "rxjs";
 })
 export class DesksharingHeaderComponent{
 
-  //keycloakService: KeycloakService = inject(KeycloakService);
+  keycloakService: KeycloakService = inject(KeycloakService);
   protected open: boolean;
 
   logout(){
-   // this.keycloakService.logout();
+    this.keycloakService.logout();
   }
 
   constructor(private router: Router) {

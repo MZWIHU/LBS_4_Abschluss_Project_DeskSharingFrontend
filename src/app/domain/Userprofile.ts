@@ -4,4 +4,5 @@ export class UserProfile{
   lastName?:string;
   token?:string;
   username? :string;
+  attributes?: Record<string, unknown>;
 }

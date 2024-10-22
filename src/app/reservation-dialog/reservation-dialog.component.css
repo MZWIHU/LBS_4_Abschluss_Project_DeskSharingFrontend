@@ -4,10 +4,12 @@
 }
 .dialog {
   color: black;
+  text-align: center;
 }
 
 .sub {
   margin: 10px;
+  color: black;
 }
 
 .calendar {
@@ -20,5 +22,5 @@
 }
 
 .svgDiv {
-  overflow: scroll;
+
 }

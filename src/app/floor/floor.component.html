@@ -1,6 +1,6 @@
 <!--<object type="image/svg+xml" [data]="safePath" #svgObject class="mySVG"></object>-->
 <!--<img #svgObject class="mySVG" [src]="safePath" alt="floor"><img>-->
-<div class="svgDiv" style="overflow: scroll">
+<div class="svgDiv" style="overflow: auto">
   <app-map class="mySVG"></app-map>
 </div>
 <h2>Today's reservations:</h2>
@@ -18,7 +18,7 @@
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Date</th>
-      <td mat-cell *matCellDef="let element"> {{ element?.date?.substring(0, element?.date?.search("T")) }}</td>
+      <td mat-cell *matCellDef="let element"> {{ element.date }}</td>
     </ng-container>
 
     <ng-container matColumnDef="user">

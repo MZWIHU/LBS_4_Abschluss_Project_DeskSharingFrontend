@@ -2,3 +2,12 @@
   max-width: 650px;
   margin: 35px auto;
 }
+
+.outer {
+  width: 85%;
+}
+
+.heading {
+  text-align: left;
+  margin-left: 10%;
+}

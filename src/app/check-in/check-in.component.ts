@@ -38,7 +38,8 @@ export class CheckInComponent implements OnInit {
 
   getReservation(floor: string, desk: string) {
     this.reservationService.getReservationByDesk(floor, desk).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res => {
-      this.reservation = res;
+        this.reservation = res;
+        console.log(this.reservation);
       }
     );
   }
@@ -47,9 +48,10 @@ export class CheckInComponent implements OnInit {
     let firstName: string = localStorage.getItem('firstName');
     let lastName: string = localStorage.getItem('lastName');
 
-    if(firstName + " " + lastName == this.reservation.user.name) {
-      this.reservationService.checkIn(this.reservation);
-      this.router.navigate([""]);
+    if (firstName + " " + lastName == this.reservation.user.name + this.reservation.user.surname) {
+      this.reservationService.checkIn(this.reservation).subscribe(_ => {
+        this.router.navigate([""]).then(r => {});
+      });
     } else {
       this.message = "You did not reserve this table!"
     }

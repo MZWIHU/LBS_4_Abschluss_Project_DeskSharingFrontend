@@ -1,18 +1,10 @@
-import {AfterViewInit, Component, DestroyRef, inject, OnInit, ViewChild} from '@angular/core';
-import {
-  ApexAxisChartSeries,
-  ApexTitleSubtitle,
-  ApexDataLabels,
-  ApexFill,
-  ApexMarkers,
-  ApexYAxis,
-  ApexXAxis,
-  ApexTooltip,
-  ApexStroke, NgApexchartsModule
-} from "ng-apexcharts";
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {StatisticService} from "../service/statistic.service";
-import {StatisticDays} from "../domain/StatisticDays";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {
+  ApexAxisChartSeries, ApexDataLabels,
+  ApexFill, ApexMarkers, ApexStroke, ApexTitleSubtitle, ApexTooltip, ApexXAxis, ApexYAxis, NgApexchartsModule
+} from "ng-apexcharts";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -41,38 +33,13 @@ export class GraphComponent implements OnInit {
 
   private statisticService: StatisticService = inject(StatisticService);
   private destroyRef: DestroyRef = inject(DestroyRef);
-  private chart1: any[] = [[1,1]];
-  private chart2: any[] = [[1,2]];
-  private chart3: any[] = [[1,3]];
-
-
-  ngOnInit() {
-    //this.initCharts()
-
-    this.statisticService.getStatistics().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(resp => {
-      let times: string[] = [];
-      let values1: number[] = [];
-      let values2: number[] = [];
-      let values3: number[] = [];
-      resp.forEach(element => {
-        times.push(element.date);
-        values1.push(element.checkedIn)
-        values2.push(element.notCheckedIn)
-        values3.push(element.reservationAmount);
-      })
-      this.chart1 = this.generateDayWiseTimeSeries(times, values1);
-      this.chart2 = this.generateDayWiseTimeSeries(times, values2);
-      this.chart3 = this.generateDayWiseTimeSeries(times, values3);
-
-      this.initCharts()
-    });
-  }
-
-
-
-  public chart1options: Partial<ChartOptions>;
-  public chart2options: Partial<ChartOptions>;
-  public chart3options: Partial<ChartOptions>;
+  private times: string[] = [];
+  private values1: number[] = [];
+  private values2: number[] = [];
+  private values3: number[] = [];
+  public chart1options?: Partial<ChartOptions>;
+  public chart2options?: Partial<ChartOptions>;
+  public chart3options?: Partial<ChartOptions>;
   public commonOptions: Partial<ChartOptions> = {
     dataLabels: {
       enabled: false
@@ -116,12 +83,33 @@ export class GraphComponent implements OnInit {
     }
   };
 
+  ngOnInit() {
+    //this.initCharts()
+
+    this.statisticService.getStatistics().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(resp => {
+      resp.forEach(element => {
+        this.times.push(element.date);
+        this.values1.push(element.checkedIn)
+        this.values2.push(element.notCheckedIn)
+        this.values3.push(element.reservationAmount);
+      })
+
+      this.initCharts()
+
+    });
+  }
+
   public initCharts(): void {
     this.chart1options = {
+      title: {
+        text: "Checked In",
+        align: "left",
+        offsetX: 30
+      },
       series: [
         {
           name: "chart1",
-          data: this.chart1
+          data: this.generateDayWiseTimeSeries(this.times, this.values1)
         }
       ],
       chart: {
@@ -140,11 +128,16 @@ export class GraphComponent implements OnInit {
     };
 
     this.chart2options = {
+      title: {
+        text: "Not checked In",
+        align: "left",
+        offsetX: 30
+      },
       series: [
         {
           name: "chart2",
-          data: this.chart2
-        }
+          data: this.generateDayWiseTimeSeries(this.times, this.values2)
+        },
       ],
       chart: {
         id: "tw",
@@ -162,16 +155,21 @@ export class GraphComponent implements OnInit {
     };
 
     this.chart3options = {
+      title: {
+        text: "Total reservations",
+        align: "left",
+        offsetX: 30
+      },
       series: [
         {
           name: "chart3",
-          data: this.chart3
+          data: this.generateDayWiseTimeSeries(this.times, this.values3)
         }
       ],
       chart: {
         id: "yt",
         group: "social",
-        type: "area",
+        type: "line",
         height: 160
       },
       colors: ["#00E396"],
@@ -196,5 +194,4 @@ export class GraphComponent implements OnInit {
     //console.log(series + "AFTER")
     return series;
   }
-
 }

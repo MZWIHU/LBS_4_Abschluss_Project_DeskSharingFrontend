@@ -6,6 +6,7 @@ import {MatDivider} from "@angular/material/divider";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {KeycloakService} from "./service/keycloak-service.service";
+import {AuthService} from "./service/auth-service.service";
 
 //import {KeycloakService} from "./service/keycloak.service";
 
@@ -30,14 +31,13 @@ export class AppComponent {
   numberOfFloors: number = 4;
   numberOfFloorsCollection: number[] = []
   previousRoute: string = "";
-  keycloakService: KeycloakService = inject(KeycloakService)
+  keycloakService: KeycloakService = inject(KeycloakService);
 
 
   constructor(private router: Router) {
-
     router.events.subscribe(_ => {
       //console.log(router.url);
-      this.open = !router.url.startsWith("/#state") && router.url != "/" && router.url == "/checkin";
+      this.open = !router.url.startsWith("/#state") && router.url != "/" && !router.url.includes("/checkin");
       //console.log(!router.url.startsWith("/#state"))
       //console.log(this.open)
     })

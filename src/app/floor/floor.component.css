@@ -1,6 +1,6 @@
 .mySVG {
   text-align: center;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .dialog {

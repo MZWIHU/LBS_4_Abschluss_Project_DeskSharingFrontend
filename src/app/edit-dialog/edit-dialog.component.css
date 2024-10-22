@@ -1,0 +1,26 @@
+.outer {
+  text-align: center;
+  color: black;
+}
+.dialog {
+  color: black;
+  text-align: center;
+}
+
+.sub {
+  margin: 10px;
+  color: black;
+}
+
+.calendar {
+  width: 300px;
+  margin: 15px auto auto;
+}
+
+.heading {
+  font-weight: normal;
+}
+
+.svgDiv {
+
+}

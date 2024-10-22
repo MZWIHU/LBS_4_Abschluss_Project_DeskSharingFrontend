@@ -9,12 +9,16 @@ export class AuthService {
   constructor() {
   }
 
-  storeInfo(userProfile: UserProfile) {
+  storeInfo(userProfile: UserProfile, roles: string[]) {
+    let rolesString: string = roles.join(",");
+
+
     localStorage.setItem("email", userProfile.email);
     localStorage.setItem("firstName", userProfile.firstName);
     localStorage.setItem("lastName", userProfile.lastName);
     localStorage.setItem("token", userProfile.token);
-    localStorage.setItem("plz", userProfile.attributes["postal_code"] as string);
+    localStorage.setItem("roles", rolesString);
+
   }
 
   getInfo(): UserProfile {
@@ -27,5 +31,10 @@ export class AuthService {
     userProfile.username = localStorage.getItem("username")
 
     return userProfile;
+  }
+
+  getRoles() : string[] {
+
+    return localStorage.getItem("roles").split(",");
   }
 }

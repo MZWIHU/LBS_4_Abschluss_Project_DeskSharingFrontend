@@ -17,7 +17,7 @@ export const routes: Routes = [
   {path: 'admin', component: AdminViewComponent},
   {path: 'statistics', component: StatisticsComponent},
   {path: 'checkin/floor/:floor/desk/:desk', component: CheckInComponent},
-  {path: 'chart', component: GraphComponent}
+  {path: 'chart', component: GraphComponent},
 ];
 
 @NgModule({

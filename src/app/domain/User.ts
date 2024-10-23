@@ -13,7 +13,7 @@ export class User {
 
   public department;
 
-  constructor(mail : string, name: string, surname: string,username:string ,department: string) {
+  constructor(mail: string, name: string, surname: string, username: string, department: string) {
     this.mail = mail;
     this.name = name;
     this.username = username;

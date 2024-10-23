@@ -3,25 +3,24 @@ import {Reservation} from "../domain/Reservation";
 import {MatTableDataSource} from "@angular/material/table";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AdminReservationResponse} from "../domain/AdminReservationResponse";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class DepartmentService {
-  public dataSource : MatTableDataSource<Reservation> = new MatTableDataSource<Reservation>();
+  public dataSource: MatTableDataSource<Reservation> = new MatTableDataSource<Reservation>();
 
   destroyRef: DestroyRef = inject(DestroyRef)
 
   constructor(private http: HttpClient) {
 
   }
-  setDatasource(dataSource :MatTableDataSource<Reservation>){
+
+  setDatasource(dataSource: MatTableDataSource<Reservation>) {
     this.dataSource = dataSource
 
   }
-
 
 
   getListOfReservationsByDepartment(map: Map<string, Reservation[]>, department: string): Reservation[] {
@@ -35,13 +34,13 @@ export class DepartmentService {
 
     return depReservations;
   }
-  getReservations(): Observable<Map<string,Reservation[]>> {
+
+  getReservations(): Observable<Map<string, Reservation[]>> {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
-    return this.http.get<Map<string,Reservation[]>>('http://localhost:8090/getalladminreservation');
+    return this.http.get<Map<string, Reservation[]>>('http://localhost:8090/getalladminreservation');
   }
-
 
 
 }

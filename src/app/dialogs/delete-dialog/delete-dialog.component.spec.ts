@@ -10,7 +10,7 @@ describe('DeleteDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DeleteDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DeleteDialogComponent);
     component = fixture.componentInstance;

@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogContent, MatDialogRef} from "@angular/material/dialog";
-import {Reservation} from "../domain/Reservation";
-import {ReservationService} from "../service/reservation.service";
+import {Reservation} from "../../domain/Reservation";
+import {ReservationService} from "../../service/reservation.service";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatCard} from "@angular/material/card";
 import {MatCalendar, MatDatepickerInput} from "@angular/material/datepicker";
@@ -21,7 +21,7 @@ import {provideNativeDateAdapter} from "@angular/material/core";
   ],
   templateUrl: './edit-dialog.component.html',
   styleUrl: './edit-dialog.component.css',
-  providers:[provideNativeDateAdapter()]
+  providers: [provideNativeDateAdapter()]
 })
 export class EditDialogComponent {
   private dialogRef: MatDialogRef<EditDialogComponent> = inject(MatDialogRef<EditDialogComponent>)

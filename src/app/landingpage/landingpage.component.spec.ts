@@ -10,7 +10,7 @@ describe('LandingpageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [LandingpageComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(LandingpageComponent);
     component = fixture.componentInstance;

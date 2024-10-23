@@ -1,6 +1,6 @@
 import {Component, DestroyRef, inject, NgZone, ViewChild} from '@angular/core';
 import {CommonModule} from "@angular/common";
-import {ReservationDialogComponent} from "../reservation-dialog/reservation-dialog.component";
+import {ReservationDialogComponent} from "../dialogs/reservation-dialog/reservation-dialog.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {ActivatedRoute, ParamMap, RouterLink} from "@angular/router";
@@ -55,6 +55,7 @@ export class FloorComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   //@ViewChild('svgObject') svgObject: ElementRef;
 
   constructor() {
@@ -70,13 +71,13 @@ export class FloorComponent {
 
   //opens the dialog and passes the necessary data to it
   openDialog(deskID: number, reservations: Reservation[]): void {
-      const dialogRef = this.dialog.open(ReservationDialogComponent, {
-        data: {
-          floor: this.floor,
-          deskID: deskID,
-          reservations: reservations
-        },
-      });
+    const dialogRef = this.dialog.open(ReservationDialogComponent, {
+      data: {
+        floor: this.floor,
+        deskID: deskID,
+        reservations: reservations
+      },
+    });
   }
 
   //gets the floor currently on from the url path
@@ -131,6 +132,5 @@ export class FloorComponent {
     //console.log(filterValue)
     //console.log(this.dataSource)
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
   }
 }

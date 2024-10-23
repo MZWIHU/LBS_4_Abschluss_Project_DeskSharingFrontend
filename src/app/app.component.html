@@ -3,7 +3,9 @@
   <mat-sidenav mode="side" [opened]="open" class="side">
     <button mat-button type="button" class="navbtn" style="color: black" routerLink="/overview">Reservations</button>
     @for (i of numberOfFloorsCollection; track i) {
-      <button mat-button type="button" class="navbtn" style="color: black" (click)="redirectTo('/floor/' + i)">{{ i }}. Floor</button>
+      <button mat-button type="button" class="navbtn" style="color: black" (click)="redirectTo('/floor/' + i)">{{ i }}.
+        Floor
+      </button>
       <br>
     }
   </mat-sidenav>

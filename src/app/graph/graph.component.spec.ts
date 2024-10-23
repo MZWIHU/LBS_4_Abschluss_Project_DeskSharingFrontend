@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GraphComponent } from './graph.component';
+import {GraphComponent} from './graph.component';
 
 describe('GraphComponent', () => {
   let component: GraphComponent;
@@ -10,7 +10,7 @@ describe('GraphComponent', () => {
     await TestBed.configureTestingModule({
       imports: [GraphComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(GraphComponent);
     component = fixture.componentInstance;

@@ -10,7 +10,7 @@ describe('EditDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [EditDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(EditDialogComponent);
     component = fixture.componentInstance;

@@ -50,7 +50,8 @@ export class CheckInComponent implements OnInit {
 
     if (firstName + " " + lastName == this.reservation.user.name + this.reservation.user.surname) {
       this.reservationService.checkIn(this.reservation).subscribe(_ => {
-        this.router.navigate([""]).then(r => {});
+        this.router.navigate([""]).then(r => {
+        });
       });
     } else {
       this.message = "You did not reserve this table!"

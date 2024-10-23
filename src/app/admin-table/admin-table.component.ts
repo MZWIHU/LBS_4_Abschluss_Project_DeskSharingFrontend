@@ -9,8 +9,7 @@ import {
   MatHeaderRowDef,
   MatRow,
   MatRowDef,
-  MatTable,
-  MatTableDataSource
+  MatTable
 } from "@angular/material/table";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {SelectionModel} from "@angular/cdk/collections";
@@ -39,22 +38,22 @@ import {Reservation} from "../domain/Reservation";
 export class AdminTableComponent implements OnInit {
   protected readonly departmentService = inject(DepartmentService);
   reservations: Map<string, Reservation[]> = new Map();
-  temp : string;
-  tempRes:string;
+  temp: string;
+  tempRes: string;
   dataSource = this.departmentService.dataSource;
 
   ngOnInit() {
-     this.reservations = new Map<string,Reservation[]>();
-    this.departmentService.getReservations().subscribe(data =>{
+    this.reservations = new Map<string, Reservation[]>();
+    this.departmentService.getReservations().subscribe(data => {
       this.reservations = new Map(Object.entries(data));
     });
     let temp = this.reservations.keys().next().value;
     let tempRes: Reservation[] = [];
     //if (this.reservations.get(temp)?.length > 0){
-      for (let res of this.reservations.get(temp)) {
-        res.position++ ;
-        tempRes.push(res);
-      }
+    for (let res of this.reservations.get(temp)) {
+      res.position++;
+      tempRes.push(res);
+    }
     //}
     this.dataSource = this.departmentService.dataSource;
 

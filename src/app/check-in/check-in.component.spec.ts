@@ -10,7 +10,7 @@ describe('CheckInComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CheckInComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CheckInComponent);
     component = fixture.componentInstance;

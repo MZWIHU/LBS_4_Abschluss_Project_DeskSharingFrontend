@@ -35,7 +35,7 @@ export class ReservationService {
 
 
     let request = new Reservation(date.toDateString(),
-      new User("test@test.com", "Martin", "TEST","ZWM", "ACPR")
+      new User("test@test.com", "Martin", "TEST", "ZWM", "ACPR")
       , new Desk(deskID, floor));
 
     //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(
@@ -62,7 +62,7 @@ export class ReservationService {
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
 
-    console.log("SEND")
+    //console.log("SEND")
     this.http.put("http://localhost:8090/updatereservation", reservation, {headers}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
       //this.http.put("https://desksharing.onrender.com/reservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
       _ => {
@@ -85,7 +85,7 @@ export class ReservationService {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
-    console.log("Delete")
+    //console.log("Delete")
     return this.http.delete("http://localhost:8090/deletereservation", {headers: headers, body: reservation})
       .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {
       })

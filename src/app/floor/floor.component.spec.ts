@@ -10,7 +10,7 @@ describe('FloorComponent', () => {
     await TestBed.configureTestingModule({
       imports: [FloorComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(FloorComponent);
     component = fixture.componentInstance;

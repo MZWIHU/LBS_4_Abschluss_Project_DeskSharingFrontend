@@ -4,8 +4,8 @@ import {MatCalendar} from "@angular/material/datepicker";
 import {MatCard} from "@angular/material/card";
 import {MAT_DIALOG_DATA, MatDialogContent, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {ReactiveFormsModule} from "@angular/forms";
-import {Reservation} from "../domain/Reservation";
-import {ReservationService} from "../service/reservation.service";
+import {Reservation} from "../../domain/Reservation";
+import {ReservationService} from "../../service/reservation.service";
 
 @Component({
   selector: 'app-delete-dialog',

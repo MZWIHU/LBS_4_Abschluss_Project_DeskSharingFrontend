@@ -18,8 +18,8 @@ import {Reservation} from "../domain/Reservation";
 import {MatDialog} from "@angular/material/dialog";
 //import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {EditDialogComponent} from "../edit-dialog/edit-dialog.component";
-import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
+import {EditDialogComponent} from "../dialogs/edit-dialog/edit-dialog.component";
+import {DeleteDialogComponent} from "../dialogs/delete-dialog/delete-dialog.component";
 import {ReservationService} from "../service/reservation.service";
 
 //import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
@@ -65,12 +65,12 @@ export class ReservationOverviewComponent implements OnInit {
       .subscribe(
         response => {
           this.dataSource = response;
-          console.log(response)
+          //console.log(response)
         })
   }
 
   delete(reservation: Reservation) {
-    console.log(reservation)
+    //console.log(reservation)
     //this.reservationService.deleteReservation(reservation)
     this.openDeleteDialog(reservation)
   }

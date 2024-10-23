@@ -10,7 +10,7 @@ describe('AdminViewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AdminViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(AdminViewComponent);
     component = fixture.componentInstance;

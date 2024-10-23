@@ -2,6 +2,7 @@
   text-align: center;
   color: black;
 }
+
 .dialog {
   color: black;
 }
@@ -10,7 +11,7 @@
   margin: 10px;
 }
 
-.delete{
+.delete {
   margin: 10px;
   background-color: red;
 }

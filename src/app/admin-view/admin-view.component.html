@@ -1,16 +1,16 @@
 <mat-accordion>
   <header class=""></header>
   <div class="panelDiv">
-    @if (reservations != null){
-  @for (entry of reservations.keys() ; track reservations.keys()) {
+    @if (reservations != null) {
+      @for (entry of reservations.keys(); track reservations.keys()) {
 
-    <mat-expansion-panel (click) = "getDepartmentOnclick(entry)" class="departmentPanel">
-      <mat-expansion-panel-header>
-        <mat-panel-title> Department: {{entry}}</mat-panel-title>
-      </mat-expansion-panel-header>
-      <app-admin-table></app-admin-table>
-    </mat-expansion-panel>
-  }
+        <mat-expansion-panel (click)="getDepartmentOnclick(entry)" class="departmentPanel">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Department: {{ entry }}</mat-panel-title>
+          </mat-expansion-panel-header>
+          <app-admin-table></app-admin-table>
+        </mat-expansion-panel>
+      }
     } @else {
       <label>There are no reservations yet</label>
     }

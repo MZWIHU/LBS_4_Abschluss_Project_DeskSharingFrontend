@@ -2,8 +2,16 @@ import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {StatisticService} from "../service/statistic.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {
-  ApexAxisChartSeries, ApexDataLabels,
-  ApexFill, ApexMarkers, ApexStroke, ApexTitleSubtitle, ApexTooltip, ApexXAxis, ApexYAxis, NgApexchartsModule
+  ApexAxisChartSeries,
+  ApexDataLabels,
+  ApexFill,
+  ApexMarkers,
+  ApexStroke,
+  ApexTitleSubtitle,
+  ApexTooltip,
+  ApexXAxis,
+  ApexYAxis,
+  NgApexchartsModule
 } from "ng-apexcharts";
 
 export type ChartOptions = {

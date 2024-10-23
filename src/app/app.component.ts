@@ -6,7 +6,6 @@ import {MatDivider} from "@angular/material/divider";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {KeycloakService} from "./service/keycloak-service.service";
-import {AuthService} from "./service/auth-service.service";
 
 //import {KeycloakService} from "./service/keycloak.service";
 

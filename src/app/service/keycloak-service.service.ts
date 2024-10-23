@@ -12,6 +12,7 @@ export class KeycloakService {
   private _profile: UserProfile | undefined;
   private authService: AuthService = inject(AuthService);
   private _roles: string[] = [];
+
   constructor() {
     this.init()
   }

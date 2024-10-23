@@ -10,7 +10,7 @@ describe('ReservationOverviewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ReservationOverviewComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ReservationOverviewComponent);
     component = fixture.componentInstance;

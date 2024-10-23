@@ -5,7 +5,7 @@ import {ActivatedRoute, ParamMap} from "@angular/router";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ReservationService} from "../service/reservation.service";
 import {MatDialog} from "@angular/material/dialog";
-import {ReservationDialogComponent} from "../reservation-dialog/reservation-dialog.component";
+import {ReservationDialogComponent} from "../dialogs/reservation-dialog/reservation-dialog.component";
 
 @Component({
   selector: 'app-map',
@@ -55,7 +55,7 @@ export class MapComponent {
   }
 
   onDeskClick(id: string) {
-    console.log("funktioniert")
+    //console.log("funktioniert")
     // console.log(rect)
     // console.log('Desk clicked:', target.id);
     let response = this.reservationService.getReservation(+id, +this.floor)

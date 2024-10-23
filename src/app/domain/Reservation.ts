@@ -1,6 +1,5 @@
 import {User} from './User';
 import {Desk} from "./Desk";
-import {fakeAsync} from "@angular/core/testing";
 
 /*
 class representing a reservation
@@ -8,7 +7,7 @@ class representing a reservation
 export class Reservation {
 
 
-  constructor(date: string, user : User, desk: Desk) {
+  constructor(date: string, user: User, desk: Desk) {
     this.date = date;
     this.user = user;
     this.desk = desk;
@@ -16,18 +15,18 @@ export class Reservation {
   }
 
 
-   _id : any;
+  _id: any;
 
-   mongoID : string;
+  mongoID: string;
 
-   position : number;
+  position: number;
 
-  date : string;
+  date: string;
 
-  user : User;
+  user: User;
 
-  desk : Desk;
+  desk: Desk;
 
-  checkedin : boolean;
+  checkedin: boolean;
 
 }

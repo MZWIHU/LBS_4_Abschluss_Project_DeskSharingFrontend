@@ -24,7 +24,7 @@ export class LandingpageComponent implements OnInit {
     this.userInfo = this.authService.getInfo();
     this.roles = this.authService.getRoles();
     this.user = this.userInfo.firstName;
-    console.log(this.roles.includes("admin"))
+    //console.log(this.roles.includes("admin"))
   }
 
 }

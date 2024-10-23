@@ -1,11 +1,12 @@
 .inp {
   visibility: hidden;
 }
-.panelDiv{
+
+.panelDiv {
   margin-top: 1%;
 }
 
-.departmentPanel{
+.departmentPanel {
 
   display: block;
   margin-right: 1%;

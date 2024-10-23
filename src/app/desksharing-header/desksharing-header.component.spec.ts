@@ -10,7 +10,7 @@ describe('DesksharingHeaderComponent', () => {
     await TestBed.configureTestingModule({
       imports: [DesksharingHeaderComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(DesksharingHeaderComponent);
     component = fixture.componentInstance;

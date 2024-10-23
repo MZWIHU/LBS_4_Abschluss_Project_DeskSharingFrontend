@@ -33,7 +33,7 @@ export class AuthService {
     return userProfile;
   }
 
-  getRoles() : string[] {
+  getRoles(): string[] {
 
     return localStorage.getItem("roles").split(",");
   }

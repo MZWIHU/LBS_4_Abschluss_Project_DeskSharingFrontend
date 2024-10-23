@@ -10,7 +10,7 @@ describe('FormDialogComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ReservationDialogComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ReservationDialogComponent);
     component = fixture.componentInstance;

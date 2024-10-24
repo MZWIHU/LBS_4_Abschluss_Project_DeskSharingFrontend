@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -15,6 +15,7 @@ import {MatCheckbox} from "@angular/material/checkbox";
 import {SelectionModel} from "@angular/cdk/collections";
 import {DepartmentService} from "../service/department.service";
 import {Reservation} from "../domain/Reservation";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-admin-table',
@@ -38,25 +39,23 @@ import {Reservation} from "../domain/Reservation";
 export class AdminTableComponent implements OnInit {
   protected readonly departmentService = inject(DepartmentService);
   reservations: Map<string, Reservation[]> = new Map();
-  temp: string;
-  tempRes: string;
   dataSource = this.departmentService.dataSource;
+  private destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit() {
     this.reservations = new Map<string, Reservation[]>();
-    this.departmentService.getReservations().subscribe(data => {
+    this.departmentService.getReservations().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(data => {
       this.reservations = new Map(Object.entries(data));
-    });
-    let temp = this.reservations.keys().next().value;
-    let tempRes: Reservation[] = [];
-    //if (this.reservations.get(temp)?.length > 0){
-    for (let res of this.reservations.get(temp)) {
-      res.position++;
-      tempRes.push(res);
-    }
-    //}
-    this.dataSource = this.departmentService.dataSource;
+      let temp = this.reservations.keys().next().value;
+      let tempRes: Reservation[] = [];
+      //if (this.reservations.get(temp)?.length > 0){
+      for (let res of this.reservations.get(temp)) {
+        res.position++;
+        tempRes.push(res);
+      }
+      this.dataSource = this.departmentService.dataSource;
 
+    });
   }
 
   displayedColumns: string[] = ['select', 'desk', 'date', 'user'];

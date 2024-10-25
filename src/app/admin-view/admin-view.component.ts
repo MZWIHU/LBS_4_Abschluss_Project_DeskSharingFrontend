@@ -19,6 +19,8 @@ import {MatCheckbox} from "@angular/material/checkbox";
 import {FormsModule} from "@angular/forms";
 import {AdminTableComponent} from "../admin-table/admin-table.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {MatTab, MatTabGroup} from "@angular/material/tabs";
+import {AdminTableUserComponent} from "../admin-table-user/admin-table-user.component";
 
 @Component({
   selector: 'app-admin-view',
@@ -39,6 +41,9 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     FormsModule,
     MatHeaderCellDef,
     AdminTableComponent,
+    MatTabGroup,
+    MatTab,
+    AdminTableUserComponent,
   ],
   templateUrl: './admin-view.component.html',
   styleUrl: './admin-view.component.css'
@@ -56,7 +61,7 @@ export class AdminViewComponent implements OnInit {
       this.reservations = new Map(Object.entries(data));
       this.department = this.reservations.keys().next().value;
       let tempRes: Reservation[] = [];
-      if (this.reservations.size > 1) {
+      if (this.reservations.size >= 1) {
         for (let res of this.reservations.get(this.department).values()) {
           res.position = 1;
           tempRes.push(res);

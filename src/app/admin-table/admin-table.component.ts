@@ -6,7 +6,7 @@ import {
   MatHeaderCell,
   MatHeaderCellDef,
   MatHeaderRow,
-  MatHeaderRowDef,
+  MatHeaderRowDef, MatNoDataRow,
   MatRow,
   MatRowDef,
   MatTable
@@ -31,7 +31,8 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     MatRow,
     MatRowDef,
     MatTable,
-    MatHeaderCellDef
+    MatHeaderCellDef,
+    MatNoDataRow
   ],
   templateUrl: './admin-table.component.html',
   styleUrl: './admin-table.component.css'

@@ -108,12 +108,9 @@ export class ReservationService {
   }
 
   checkIn(reservation: Reservation) {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
 
     console.log("SEND")
-    return this.http.put("http://localhost:8090/checkin", reservation, {headers}).pipe(takeUntilDestroyed(this.destroyRef));
+    return this.http.post("http://localhost:8090/checkin", reservation, {}).pipe(takeUntilDestroyed(this.destroyRef));
 
   }
 }

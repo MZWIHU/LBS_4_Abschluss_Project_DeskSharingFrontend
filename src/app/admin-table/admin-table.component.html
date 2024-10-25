@@ -1,5 +1,4 @@
 <table mat-table [dataSource]="dataSource">
-
   <ng-container matColumnDef="select">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="$event ? toggleAllRows() : null"

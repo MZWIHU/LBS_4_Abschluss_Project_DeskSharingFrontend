@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -14,6 +14,8 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {MatCheckbox} from "@angular/material/checkbox";
 import {SelectionModel} from "@angular/cdk/collections";
 import {Reservation} from "../domain/Reservation";
+import {ReservationService} from "../service/reservation.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-admin-table-user',
@@ -30,14 +32,31 @@ import {Reservation} from "../domain/Reservation";
   styleUrl: './admin-table-user.component.css'
 })
 export class AdminTableUserComponent implements OnInit{
+  userDataSource : UserData[] = [];
   dataSource : Map<string, Reservation[]> = new Map();
-  columnsToDisplay = ['name', 'department', 'symbol', 'position'];
+  columnsToDisplay = ['name', 'department', 'email', 'symbol', 'position'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Reservation | null;
+  displayedColumns: string[] = ['desk', 'floor', 'date', 'action'];
+  reservationService: ReservationService = inject(ReservationService);
+  destroyRef: DestroyRef = inject(DestroyRef);
 
   selection = new SelectionModel<Reservation>(true, []);
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.reservationService.getAllReservationsByUser().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(resp => {
+
+        resp.forEach((value, key) => {
+          this.userDataSource.push({
+            name: value.at(0).user.name + " " + value.at(0).user.surname,
+            department: value.at(0).user.department,
+            email: key
+          })
+        })
+      }
+    )
+  }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -46,12 +65,12 @@ export class AdminTableUserComponent implements OnInit{
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
-  toggleAllRows() {
+  toggleAllRows(reservations: Reservation[]) {
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
     }
-    this.selection.select(...this.dataSource);
+    this.selection.select(...reservations);
   }
 
   checkboxLabel(row?: Reservation): string {
@@ -63,4 +82,8 @@ export class AdminTableUserComponent implements OnInit{
 
 }
 
-
+export interface UserData {
+  email: string,
+  name: string,
+  department: string
+}

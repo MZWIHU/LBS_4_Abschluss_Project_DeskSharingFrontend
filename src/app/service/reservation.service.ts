@@ -113,4 +113,8 @@ export class ReservationService {
     return this.http.post("http://localhost:8090/checkin", reservation, {}).pipe(takeUntilDestroyed(this.destroyRef));
 
   }
+
+  getAllReservationsByUser() {
+    return this.http.get<Map<string, Reservation[]>>("http://localhost:8090/getallreservationsbyuser");
+  }
 }

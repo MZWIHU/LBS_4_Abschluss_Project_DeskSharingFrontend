@@ -22,7 +22,7 @@
 
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Date</th>
-    <td mat-cell *matCellDef="let element"> {{ element?.date?.substring(0, element?.date?.search("T")) }}</td>
+    <td mat-cell *matCellDef="let element"> {{ element?.date }}</td>
   </ng-container>
 
   <ng-container matColumnDef="user">
@@ -38,3 +38,6 @@
     <td class="mat-cell" colspan="4">No reservations found</td>
   </tr>
 </table>
+<button mat-stroked-button class="delete" type="button" (click)="delete()" tabindex="-1" style="color: white">
+  Delete
+</button>

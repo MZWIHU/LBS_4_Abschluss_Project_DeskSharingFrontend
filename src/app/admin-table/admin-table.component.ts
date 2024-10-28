@@ -16,6 +16,7 @@ import {SelectionModel} from "@angular/cdk/collections";
 import {DepartmentService} from "../service/department.service";
 import {Reservation} from "../domain/Reservation";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-admin-table',
@@ -32,7 +33,8 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     MatRowDef,
     MatTable,
     MatHeaderCellDef,
-    MatNoDataRow
+    MatNoDataRow,
+    MatButton
   ],
   templateUrl: './admin-table.component.html',
   styleUrl: './admin-table.component.css'
@@ -87,4 +89,9 @@ export class AdminTableComponent implements OnInit {
 
   //protected readonly Reservation = Reservation;
   protected readonly Map = Map;
+
+  delete() {
+   // console.log(this.selection.selected)
+    this.departmentService.deleteMultipleReservations(this.selection.selected);
+  }
 }

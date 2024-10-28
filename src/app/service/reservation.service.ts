@@ -13,6 +13,7 @@ export class ReservationService {
 
 
   destroyRef: DestroyRef = inject(DestroyRef)
+  url: string = "http://localhost:8090"
 
   constructor(private http: HttpClient) {
 
@@ -25,7 +26,7 @@ export class ReservationService {
     headers.set("Accept", "application/json");
 
 
-    return this.http.get<Reservation[]>('http://localhost:8090/getreservationsfordesk?deskId=' + targetID + "&floor=" + floor, {headers})
+    return this.http.get<Reservation[]>(this.url + '/getreservationsfordesk?deskId=' + targetID + "&floor=" + floor, {headers})
   }
 
   makeReservation(date: Date, floor: number, deskID: number) {
@@ -39,7 +40,7 @@ export class ReservationService {
       , new Desk(deskID, floor));
 
     //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(
-    this.http.post("http://localhost:8090/createreservation", request, {headers}).subscribe(
+    this.http.post(this.url + "/createreservation", request, {headers}).subscribe(
       response => {
         window.location.reload()
         //console.log(response)
@@ -54,7 +55,7 @@ export class ReservationService {
 
 
     //this.http.post("https://desksharing.onrender.com/userReservations?userMail=", request, {headers}).subscribe(
-    return this.http.get<Reservation[]>("http://localhost:8090/getreservationbyuser?userMail=" + userMail, {headers})
+    return this.http.get<Reservation[]>(this.url + "/getreservationbyuser?userMail=" + userMail, {headers})
   }
 
   updateReservation(reservation: Reservation) {
@@ -63,7 +64,7 @@ export class ReservationService {
     headers.set("Accept", "application/json");
 
     //console.log("SEND")
-    this.http.put("http://localhost:8090/updatereservation", reservation, {headers}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
+    this.http.put(this.url + "/updatereservation", reservation, {headers}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
       //this.http.put("https://desksharing.onrender.com/reservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
       _ => {
       }
@@ -77,7 +78,7 @@ export class ReservationService {
     headers.set("Accept", "application/json");
 
     //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(
-    return this.http.get<Reservation[]>("http://localhost:8090/getreservationsbyfloor?floor=" + floor, {headers})
+    return this.http.get<Reservation[]>(this.url + "/getreservationsbyfloor?floor=" + floor, {headers})
     //return this.http.get<Reservation[]>("https://desksharing.onrender.com/reservations-by-floor?floor=" + floor, {headers})
   }
 
@@ -86,7 +87,7 @@ export class ReservationService {
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
     //console.log("Delete")
-    return this.http.delete("http://localhost:8090/deletereservation", {headers: headers, body: reservation})
+    return this.http.delete(this.url + "/deletereservation", {headers: headers, body: reservation})
       .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {
       })
   }
@@ -96,7 +97,7 @@ export class ReservationService {
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
     console.log("Delete")
-    return this.http.get<Reservation>("http://localhost:8090/getreservationsfordesk?floor=" + floor + "&deskId=" + desk, {headers: headers});
+    return this.http.get<Reservation>(this.url + "/getreservationsfordesk?floor=" + floor + "&deskId=" + desk, {headers: headers});
   }
 
   getReservationByDesk(floor: string, desk: string) {
@@ -104,17 +105,17 @@ export class ReservationService {
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
     console.log("Delete")
-    return this.http.get<Reservation>("http://localhost:8090/getreservationfordesk?floor=" + floor + "&deskId=" + desk, {headers: headers});
+    return this.http.get<Reservation>(this.url + "/getreservationfordesk?floor=" + floor + "&deskId=" + desk, {headers: headers});
   }
 
   checkIn(reservation: Reservation) {
 
     console.log("SEND")
-    return this.http.post("http://localhost:8090/checkin", reservation, {}).pipe(takeUntilDestroyed(this.destroyRef));
+    return this.http.post(this.url + "/checkin", reservation, {}).pipe(takeUntilDestroyed(this.destroyRef));
 
   }
 
   getAllReservationsByUser() {
-    return this.http.get<Map<string, Reservation[]>>("http://localhost:8090/getallreservationsbyuser");
+    return this.http.get<Map<string, Reservation[]>>(this.url + "/getallreservationbyusers");
   }
 }

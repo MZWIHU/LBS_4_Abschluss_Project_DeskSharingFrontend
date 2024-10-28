@@ -3,6 +3,7 @@ import {Reservation} from "../domain/Reservation";
 import {MatTableDataSource} from "@angular/material/table";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class DepartmentService {
   public dataSource: MatTableDataSource<Reservation> = new MatTableDataSource<Reservation>();
 
   destroyRef: DestroyRef = inject(DestroyRef)
+  url: string = "http://localhost:8090";
 
   constructor(private http: HttpClient) {
 
@@ -39,9 +41,16 @@ export class DepartmentService {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
-    return this.http.get<Map<string, Reservation[]>>('http://localhost:8090/getalladminreservation');
+    return this.http.get<Map<string, Reservation[]>>(this.url + '/getalladminreservation');
   }
 
 
+  deleteMultipleReservations(reservations: Reservation[]) {
+    if (reservations.length > 0) {
+      this.http.delete(this.url + "/deletemultiplereservations", {body: reservations})
+        .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {
+      });
+    }
+  }
 }
 

@@ -16,6 +16,7 @@ import {SelectionModel} from "@angular/cdk/collections";
 import {Reservation} from "../domain/Reservation";
 import {ReservationService} from "../service/reservation.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {DepartmentService} from "../service/department.service";
 
 @Component({
   selector: 'app-admin-table-user',
@@ -31,29 +32,37 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
   templateUrl: './admin-table-user.component.html',
   styleUrl: './admin-table-user.component.css'
 })
-export class AdminTableUserComponent implements OnInit{
-  userDataSource : UserData[] = [];
-  dataSource : Map<string, Reservation[]> = new Map();
-  columnsToDisplay = ['name', 'department', 'email', 'symbol', 'position'];
+export class AdminTableUserComponent implements OnInit {
+  userDataSource: UserData[] = [];
+  dataSource: Map<string, Reservation[]> = new Map();
+  columnsToDisplay = ['name', 'department', 'email'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement: Reservation | null;
-  displayedColumns: string[] = ['desk', 'floor', 'date', 'action'];
+  displayedColumns: string[] = ['select', 'desk', 'floor', 'date'];
   reservationService: ReservationService = inject(ReservationService);
+  departmentService: DepartmentService = inject(DepartmentService);
   destroyRef: DestroyRef = inject(DestroyRef);
+  reservations: Map<string, Reservation[]> = new Map();
+
 
   selection = new SelectionModel<Reservation>(true, []);
 
   ngOnInit() {
 
     this.reservationService.getAllReservationsByUser().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(resp => {
-
-        resp.forEach((value, key) => {
-          this.userDataSource.push({
+        this.reservations = new Map(Object.entries(resp));
+        this.dataSource = this.reservations;
+        // console.log(this.dataSource.get("test@test.com").at(0).user.name + "MAAAAAAAP")
+        let temp: UserData[] = [];
+        this.reservations.forEach((value, key) => {
+          temp.push({
             name: value.at(0).user.name + " " + value.at(0).user.surname,
             department: value.at(0).user.department,
             email: key
           })
         })
+        this.userDataSource = temp;
+        //console.log(this.userDataSource)
       }
     )
   }
@@ -80,6 +89,9 @@ export class AdminTableUserComponent implements OnInit{
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`
   }
 
+  delete() {
+    this.departmentService.deleteMultipleReservations(this.selection.selected)
+  }
 }
 
 export interface UserData {

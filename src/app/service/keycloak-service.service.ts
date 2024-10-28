@@ -37,7 +37,7 @@ export class KeycloakService {
   }
 
   async init() {
-    console.log("init")
+    //console.log("init")
     const authenticated = await this.keycloak?.init({
       onLoad: 'login-required',
       //checkLoginIframe: false
@@ -46,14 +46,14 @@ export class KeycloakService {
     });
 
     if (authenticated) {
-      console.log("User authenticated")
+      //console.log("User authenticated")
       this._profile = (await this.keycloak.loadUserProfile()) as UserProfile;
       this._roles = this.keycloak.tokenParsed.realm_access.roles;
       //console.log(this.keycloak.tokenParsed.realm_access.roles);
       this._profile.token = this.keycloak.token;
       this._profile.username = this.profile.username;
       this._profile.attributes = this.profile.attributes;
-      console.log(this._profile)
+      //console.log(this._profile)
       this.authService.storeInfo(this._profile, this._roles)
 
     }

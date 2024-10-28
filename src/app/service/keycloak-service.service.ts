@@ -20,8 +20,8 @@ export class KeycloakService {
   get keycloak() {
     if (!this._keycloak) {
       this._keycloak = new Keycloak({
-        url: "http://localhost:8080",
-        realm: "DeskSharing",
+        url: "http://20.250.170.242:8080",
+        realm: "master",
         clientId: "login-app"
       })
     }

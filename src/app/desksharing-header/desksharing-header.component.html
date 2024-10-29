@@ -10,7 +10,7 @@
         <mat-icon>qr_code_scanner</mat-icon>
         <span>Scan QR Code</span>
       </button>
-      @if (open) {
+      @if (openchart) {
         <button mat-menu-item>
           <mat-icon>qr_code_2</mat-icon>
           <span>Generate QR Codes</span>
@@ -18,6 +18,12 @@
         <button mat-menu-item (click)="statistics()">
           <mat-icon>equalizer</mat-icon>
           <span>View Statistics</span>
+        </button>
+      }
+      @if(openadmin){
+        <button mat-menu-item (click)="admin()">
+          <mat-icon>admin_panel_settings</mat-icon>
+          <span>Admin View</span>
         </button>
       }
     </mat-menu>

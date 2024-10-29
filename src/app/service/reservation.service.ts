@@ -15,32 +15,26 @@ export class ReservationService {
   destroyRef: DestroyRef = inject(DestroyRef)
   url: string = "http://localhost:8090"
 
-  constructor(private http: HttpClient) {
-
-  }
-
+  headers: HttpHeaders = new HttpHeaders();
+  http : HttpClient = inject(HttpClient)
 
   getReservation(targetID: number, floor: number): Observable<Reservation[]> {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
-
-
-    return this.http.get<Reservation[]>(this.url + '/getreservationsfordesk?deskId=' + targetID + "&floor=" + floor, {headers})
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
+    return this.http.get<Reservation[]>(this.url + '/getreservationsfordesk?deskId=' + targetID + "&floor=" + floor, {headers: this.headers})
   }
 
   makeReservation(date: Date, floor: number, deskID: number) {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
-
-
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
     let request = new Reservation(date.toDateString(),
       new User(localStorage.getItem("email"), localStorage.getItem("firstName"), localStorage.getItem("lastName"), localStorage.getItem("username"), localStorage.getItem("department"))
       , new Desk(deskID, floor));
 
     //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(
-    this.http.post(this.url + "/createreservation", request, {headers}).subscribe(
+    this.http.post(this.url + "/createreservation", request, {headers: this.headers}).subscribe(
       response => {
         window.location.reload()
         //console.log(response)
@@ -49,77 +43,75 @@ export class ReservationService {
   }
 
   getReservationByUserMail(userMail: string): Observable<Reservation[]> {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
-
-
-    //this.http.post("https://desksharing.onrender.com/userReservations?userMail=", request, {headers}).subscribe(
-    return this.http.get<Reservation[]>(this.url + "/getreservationbyuser?userMail=" + userMail, {headers})
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
+    return this.http.get<Reservation[]>(this.url + "/getreservationbyuser?userMail=" + userMail, {headers: this.headers})
   }
 
   updateReservation(reservation: Reservation) {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
-
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
     //console.log("SEND")
-    this.http.put(this.url + "/updatereservation", reservation, {headers}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
-      //this.http.put("https://desksharing.onrender.com/reservation", reservation, { headers }).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
+    this.http.put(this.url + "/updatereservation", reservation, {headers: this.headers}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
       _ => {
       }
     )
   }
 
   getReservationsByFloor(floor: number) {
-    let reservations: Reservation[];
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
-
-    //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(
-    return this.http.get<Reservation[]>(this.url + "/getreservationsbyfloor?floor=" + floor, {headers})
-    //return this.http.get<Reservation[]>("https://desksharing.onrender.com/reservations-by-floor?floor=" + floor, {headers})
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
+    return this.http.get<Reservation[]>(this.url + "/getreservationsbyfloor?floor=" + floor, {headers: this.headers})
   }
 
   deleteReservation(reservation: Reservation) {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
     //console.log("Delete")
-    return this.http.delete(this.url + "/deletereservation", {headers: headers, body: reservation})
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
+    return this.http.delete(this.url + "/deletereservation", {headers: this.headers, body: reservation})
       .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {
       })
   }
 
   getReservationsByDesk(floor: string, desk: string) {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
-    console.log("Delete")
-    return this.http.get<Reservation>(this.url + "/getreservationsfordesk?floor=" + floor + "&deskId=" + desk, {headers: headers});
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
+    return this.http.get<Reservation>(this.url + "/getreservationsfordesk?floor=" + floor + "&deskId=" + desk, {headers: this.headers});
   }
 
   getReservationByDesk(floor: string, desk: string) {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
-    console.log("Delete")
-    return this.http.get<Reservation>(this.url + "/getreservationfordesk?floor=" + floor + "&deskId=" + desk, {headers: headers});
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
+    return this.http.get<Reservation>(this.url + "/getreservationfordesk?floor=" + floor + "&deskId=" + desk, {headers: this.headers});
   }
 
   checkIn(reservation: Reservation) {
-
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
     console.log("SEND")
-    return this.http.post(this.url + "/checkin", reservation, {}).pipe(takeUntilDestroyed(this.destroyRef));
+    return this.http.post(this.url + "/checkin", reservation, {headers: this.headers}).pipe(takeUntilDestroyed(this.destroyRef));
 
   }
 
   getAllReservationsByUser() {
-    return this.http.get<Map<string, Reservation[]>>(this.url + "/getallreservationbyusers");
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
+    return this.http.get<Map<string, Reservation[]>>(this.url + "/getallreservationbyusers", {headers: this.headers});
   }
 
   getAllReservationsForToday() {
-    return this.http.get<Reservation[]>(this.url + "/getallresvationsfortoday");
+    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Content-Type", "application/json");
+    this.headers = this.headers.set("Accept", "application/json");
+    console.log(this.headers)
+    return this.http.get<Reservation[]>(this.url + "/getallresvationsfortoday", {headers: this.headers});
   }
 }

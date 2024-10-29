@@ -44,6 +44,8 @@ export class AdminTableComponent implements OnInit {
   reservations: Map<string, Reservation[]> = new Map();
   dataSource = this.departmentService.dataSource;
   private destroyRef: DestroyRef = inject(DestroyRef);
+  displayedColumns: string[] = ['select', 'desk', 'date', 'user'];
+  selection = new SelectionModel<Reservation>(true)
 
   ngOnInit() {
     this.reservations = new Map<string, Reservation[]>();
@@ -58,26 +60,29 @@ export class AdminTableComponent implements OnInit {
       }
     });
     this.dataSource = this.departmentService.dataSource;
-    console.log(this.dataSource)
+    //console.log(this.dataSource)
   }
 
-  displayedColumns: string[] = ['select', 'desk', 'date', 'user'];
-
-  selection = new SelectionModel<Reservation>(true, []);
-
   isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    let numSelected = this.selection.selected.length;
+    let numRows = this.departmentService.dataSource.data.length;
+    //  console.log(this.departmentService.selection.selected)
+    // console.log(numSelected === numRows)
     return numSelected === numRows;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows() {
+    //console.log(this.isAllSelected())
     if (this.isAllSelected()) {
       this.selection.clear();
       return;
+    } else {
+      console.log(this.departmentService.dataSource.data)
+
+      this.selection.select(...this.departmentService.dataSource.data);
+
     }
-    this.selection.select(...this.dataSource.data);
   }
 
   checkboxLabel(row?: Reservation): string {
@@ -87,11 +92,8 @@ export class AdminTableComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`
   }
 
-  //protected readonly Reservation = Reservation;
-  protected readonly Map = Map;
-
   delete() {
-   // console.log(this.selection.selected)
+    // console.log(this.selection.selected)
     this.departmentService.deleteMultipleReservations(this.selection.selected);
     window.location.reload()
   }

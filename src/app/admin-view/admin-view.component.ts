@@ -21,6 +21,7 @@ import {AdminTableComponent} from "../admin-table/admin-table.component";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {AdminTableUserComponent} from "../admin-table-user/admin-table-user.component";
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-admin-view',
@@ -74,9 +75,9 @@ export class AdminViewComponent implements OnInit {
 
   getDepartmentOnclick(department: string) {
     this.department = department;
-    console.log(this.departmentService.getListOfReservationsByDepartment(this.reservations, this.department))
+    //console.log(this.departmentService.getListOfReservationsByDepartment(this.reservations, this.department))
     this.departmentService.dataSource = new MatTableDataSource<Reservation>(this.departmentService.getListOfReservationsByDepartment(this.reservations, this.department));
-
+    this.departmentService.selection = new SelectionModel<Reservation>();
   }
 
   setDatasource(reservations: Reservation[]) {

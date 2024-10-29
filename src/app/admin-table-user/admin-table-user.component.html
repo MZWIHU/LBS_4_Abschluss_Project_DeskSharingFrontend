@@ -8,13 +8,13 @@
   @for (column of columnsToDisplay; track column) {
     <ng-container matColumnDef="{{column}}">
       <th mat-header-cell *matHeaderCellDef> {{column.toUpperCase()}} </th>
-      <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+      <td mat-cell *matCellDef="let element" (click)="clearSelection()"> {{element[column]}} </td>
     </ng-container>
   }
-  <ng-container matColumnDef="expand">
+  <ng-container matColumnDef="expand" (click)="clearSelection()">
     <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation(); clearSelection()">
         @if (expandedElement === element) {
           <mat-icon>keyboard_arrow_up</mat-icon>
         } @else {
@@ -33,8 +33,8 @@
           <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef>
               <mat-checkbox (change)="$event ? toggleAllRows(dataSource.get(user.email)) : null"
-                            [checked]="selection.hasValue() && isAllSelected()"
-                            [indeterminate]="selection.hasValue() && !isAllSelected()"
+                            [checked]="selection.hasValue() && isAllSelected(dataSource.get(user.email))"
+                            [indeterminate]="selection.hasValue() && !isAllSelected(dataSource.get(user.email))"
                             [aria-label]="checkboxLabel()">
               </mat-checkbox>
             </th>

@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, OnInit} from '@angular/core';
+import {Component, DestroyRef, HostListener, inject, OnInit} from '@angular/core';
 import {
   MatCell,
   MatCellDef,
@@ -26,7 +26,7 @@ import {MatInput} from "@angular/material/input";
     trigger('detailExpand', [
       state('collapsed,void', style({height: '0px', minHeight: '0'})),
       state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
     ]),
   ],
   standalone: true,
@@ -46,9 +46,10 @@ export class AdminTableUserComponent implements OnInit {
   departmentService: DepartmentService = inject(DepartmentService);
   destroyRef: DestroyRef = inject(DestroyRef);
   reservations: Map<string, Reservation[]> = new Map();
+  res: Reservation[] =  []
 
+  selection = new SelectionModel<Reservation>(true);
 
-  selection = new SelectionModel<Reservation>(true, []);
 
   ngOnInit() {
 
@@ -70,24 +71,30 @@ export class AdminTableUserComponent implements OnInit {
     )
   }
 
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.size;
+  isAllSelected(data: Reservation[]) {
+    //console.log(data)
+    this.res = data;
+    let numSelected = this.selection.selected.length;
+    let numRows = data.length;
+    //console.log(this.dataSource.size + " Datasource size")
+    //console.log(this.selection.selected.length + " Selection size")
     return numSelected === numRows;
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   toggleAllRows(reservations: Reservation[]) {
-    if (this.isAllSelected()) {
+    //console.log(this.isAllSelected(reservations))
+    if (this.isAllSelected(reservations)) {
       this.selection.clear();
       return;
+    } else {
+      this.selection.select(...reservations);
     }
-    this.selection.select(...reservations);
   }
 
   checkboxLabel(row?: Reservation): string {
     if (!row) {
-      return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+      return `${this.isAllSelected(this.res) ? 'deselect' : 'select'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`
   }
@@ -107,6 +114,11 @@ export class AdminTableUserComponent implements OnInit {
     //console.log(filterValue)
     //console.log(this.dataSource)
     this.userDataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  clearSelection() {
+    console.log("CLEAR")
+    this.selection = new SelectionModel<Reservation>(true)
   }
 }
 

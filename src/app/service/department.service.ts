@@ -4,6 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {SelectionModel} from "@angular/cdk/collections";
 
 @Injectable({
   providedIn: 'root'
@@ -11,16 +12,11 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 export class DepartmentService {
   public dataSource: MatTableDataSource<Reservation> = new MatTableDataSource<Reservation>();
-
+  public selection =  new SelectionModel<Reservation>(true, []);
   destroyRef: DestroyRef = inject(DestroyRef)
   url: string = "http://localhost:8090";
 
   constructor(private http: HttpClient) {
-
-  }
-
-  setDatasource(dataSource: MatTableDataSource<Reservation>) {
-    this.dataSource = dataSource
 
   }
 
@@ -33,7 +29,6 @@ export class DepartmentService {
       i++;
       depReservation.position = i;
     }
-
     return depReservations;
   }
 

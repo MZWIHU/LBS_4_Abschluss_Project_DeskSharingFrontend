@@ -33,7 +33,7 @@ export class DesksharingHeaderComponent {
   constructor(private router: Router) {
 
     router.events.subscribe(_ => {
-      console.log(router.url);
+      //console.log(router.url);
       this.openchart = router.url.startsWith("/admin");
       this.openadmin = router.url.startsWith("/chart");
 

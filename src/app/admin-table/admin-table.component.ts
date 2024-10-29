@@ -78,7 +78,7 @@ export class AdminTableComponent implements OnInit {
       this.selection.clear();
       return;
     } else {
-      console.log(this.departmentService.dataSource.data)
+      //console.log(this.departmentService.dataSource.data)
 
       this.selection.select(...this.departmentService.dataSource.data);
 

@@ -76,7 +76,7 @@ export class ReservationOverviewComponent implements OnInit {
   }
 
   editEntry(reservation: Reservation) {
-    console.log(reservation)
+    //console.log(reservation)
     this.openEditDialog(reservation)
   }
 

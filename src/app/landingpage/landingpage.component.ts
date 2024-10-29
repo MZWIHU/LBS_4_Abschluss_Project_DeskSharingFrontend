@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, inject, OnInit} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {MatButton} from "@angular/material/button";
 import {AuthService} from "../service/auth-service.service";
@@ -26,5 +26,4 @@ export class LandingpageComponent implements OnInit {
     this.user = this.userInfo.firstName;
     //console.log(this.roles.includes("admin"))
   }
-
 }

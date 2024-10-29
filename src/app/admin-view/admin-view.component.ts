@@ -74,7 +74,9 @@ export class AdminViewComponent implements OnInit {
 
   getDepartmentOnclick(department: string) {
     this.department = department;
+    console.log(this.departmentService.getListOfReservationsByDepartment(this.reservations, this.department))
     this.departmentService.dataSource = new MatTableDataSource<Reservation>(this.departmentService.getListOfReservationsByDepartment(this.reservations, this.department));
+
   }
 
   setDatasource(reservations: Reservation[]) {

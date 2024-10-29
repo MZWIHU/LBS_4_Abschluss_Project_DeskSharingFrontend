@@ -8534,8 +8534,8 @@
     <path style="opacity:1" fill="#fefefe"
           d="M 1101.5,602.5 C 1098.5,602.5 1095.5,602.5 1092.5,602.5C 1092.5,601.167 1092.5,599.833 1092.5,598.5C 1095.5,598.5 1098.5,598.5 1101.5,598.5C 1101.5,599.833 1101.5,601.167 1101.5,602.5 Z"/>
   </g>
-  <text style="font-family: Arial, sans-serif; font-size: 28px; paint-order: fill; white-space: pre;"
-        transform="matrix(1.669008, 0, 0, 1.828434, -74.807541, -36.881809)" x="90.058" y="64.761">1
+  <text style="font-family: Arial, sans-serif; font-size: 28px; paint-order: fill; white-space: pre;text-orientation: upright; rotate(90deg)"
+        transform="matrix(1.669008, 0, 0, 1.828434, -74.807541, -36.881809)" x="90.058" y="64.761" >
   </text>
   <rect x="74.5" y="35.5" width="28" height="58" style="stroke: rgb(0, 0, 0);" [attr.fill]=fill[0] id="background-1">
 
@@ -8546,7 +8546,7 @@
   <rect x="102.5" y="93.581" width="28" height="58" style="stroke: rgb(0, 0, 0);" [attr.fill]=fill[3]
         id="background-4"/>
   <text style="font-family: Arial, sans-serif; font-size: 21.4681px; white-space: pre;"
-        transform="matrix(1.027081, 0, 0, 1.071357, 5.482274, 6.772079)" id="1" x="74.987" y="60.819">1
+        transform="matrix(1.027081, 0, 0, 1.071357, 5.482274, 6.772079)" id="1" x="74.987" y="60.819" >1
   </text>
   <rect x="74.5" y="35.819" width="28" height="58" style="stroke: rgb(0, 0, 0); fill: rgba(255, 255, 255, 0);"
         id="invisible-1" (click)="onDeskClick('1')">

@@ -2,6 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import Keycloak from "keycloak-js";
 import {UserProfile} from "../domain/Userprofile";
 import {AuthService} from "./auth-service.service";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,6 @@ export class KeycloakService {
       this._profile.attributes = this.profile.attributes;
       //console.log(this._profile)
       this.authService.storeInfo(this._profile, this._roles)
-
     }
   }
 

@@ -26,6 +26,7 @@ export class DesksharingHeaderComponent {
 
   logout() {
     this.keycloakService.logout();
+    localStorage.clear();
   }
 
   constructor(private router: Router) {

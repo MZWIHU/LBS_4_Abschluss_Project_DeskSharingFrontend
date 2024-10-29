@@ -45,3 +45,14 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-description-attribution {
   opacity: 0.5;
 }
+
+.delete {
+  margin: 10px;
+  background-color: red;
+}
+
+.filter {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  width: 100%;
+}

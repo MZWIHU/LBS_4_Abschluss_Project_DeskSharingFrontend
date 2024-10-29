@@ -6,7 +6,7 @@ import {
   MatHeaderRow,
   MatHeaderRowDef,
   MatRow,
-  MatRowDef, MatTable, MatTableModule
+  MatRowDef, MatTable, MatTableDataSource, MatTableModule
 } from "@angular/material/table";
 import {MatIcon, MatIconModule} from "@angular/material/icon";
 import {MatButtonModule, MatIconButton} from "@angular/material/button";
@@ -17,6 +17,8 @@ import {Reservation} from "../domain/Reservation";
 import {ReservationService} from "../service/reservation.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {DepartmentService} from "../service/department.service";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
 
 @Component({
   selector: 'app-admin-table-user',
@@ -28,12 +30,13 @@ import {DepartmentService} from "../service/department.service";
     ]),
   ],
   standalone: true,
-  imports: [MatTableModule, MatButtonModule, MatIconModule, MatCheckbox],
+  imports: [MatTableModule, MatButtonModule, MatIconModule, MatCheckbox, MatFormField, MatInput, MatLabel],
   templateUrl: './admin-table-user.component.html',
   styleUrl: './admin-table-user.component.css'
 })
 export class AdminTableUserComponent implements OnInit {
-  userDataSource: UserData[] = [];
+  userDataSource: MatTableDataSource<UserData>;
+
   dataSource: Map<string, Reservation[]> = new Map();
   columnsToDisplay = ['name', 'department', 'email'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
@@ -61,7 +64,7 @@ export class AdminTableUserComponent implements OnInit {
             email: key
           })
         })
-        this.userDataSource = temp;
+        this.userDataSource = new MatTableDataSource(temp);
         //console.log(this.userDataSource)
       }
     )
@@ -90,7 +93,20 @@ export class AdminTableUserComponent implements OnInit {
   }
 
   delete() {
-    this.departmentService.deleteMultipleReservations(this.selection.selected)
+    // console.log(this.selection.selected)
+    this.departmentService.deleteMultipleReservations(this.selection.selected);
+    window.location.reload()
+  }
+
+  applyFilter(event: Event) {
+    /*if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }*/
+
+    const filterValue = (event.target as HTMLInputElement).value;
+    //console.log(filterValue)
+    //console.log(this.dataSource)
+    this.userDataSource.filter = filterValue.trim().toLowerCase();
   }
 }
 

@@ -56,9 +56,9 @@ export class AdminTableComponent implements OnInit {
         res.position++;
         tempRes.push(res);
       }
-      this.dataSource = this.departmentService.dataSource;
-
     });
+    this.dataSource = this.departmentService.dataSource;
+    console.log(this.dataSource)
   }
 
   displayedColumns: string[] = ['select', 'desk', 'date', 'user'];
@@ -93,5 +93,7 @@ export class AdminTableComponent implements OnInit {
   delete() {
    // console.log(this.selection.selected)
     this.departmentService.deleteMultipleReservations(this.selection.selected);
+    window.location.reload()
   }
+
 }

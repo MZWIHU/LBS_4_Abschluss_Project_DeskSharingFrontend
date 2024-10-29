@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, NgZone, ViewChild} from '@angular/core';
+import {Component, DestroyRef, inject, ViewChild} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {ReservationDialogComponent} from "../dialogs/reservation-dialog/reservation-dialog.component";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -51,7 +51,6 @@ export class FloorComponent {
   private route: ActivatedRoute = inject(ActivatedRoute);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
   private destroyRef: DestroyRef = inject(DestroyRef)
-  private zone: NgZone = inject(NgZone);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

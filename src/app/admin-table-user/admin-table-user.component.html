@@ -1,3 +1,7 @@
+<mat-form-field class="filter">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Name" #input>
+</mat-form-field>
 <table mat-table
        [dataSource]="userDataSource" multiTemplateDataRows
        class="mat-elevation-z8">
@@ -65,13 +69,9 @@
             <td class="mat-cell" colspan="4">No reservations found</td>
           </tr>
         </table>
-        <button mat-stroked-button class="delete" type="button" (click)="delete()" tabindex="-1" style="color: white">
-          Delete
-        </button>
       </div>
     </td>
   </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
   <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
       class="example-element-row"
@@ -80,3 +80,6 @@
   </tr>
   <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 </table>
+<button mat-stroked-button class="delete" type="button" (click)="delete()" tabindex="-1" style="color: white">
+  Delete
+</button>

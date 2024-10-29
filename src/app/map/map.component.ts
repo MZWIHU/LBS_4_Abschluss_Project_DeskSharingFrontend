@@ -24,12 +24,14 @@ export class MapComponent {
   public dialog: MatDialog = inject(MatDialog);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private destroyRef: DestroyRef = inject(DestroyRef)
+  reservations: string[] = [];
 
 
   constructor() {
     this.getCurrentFloor()
     for (let i = 0; i < this.amountOfDesks; i++) {
       this.fill.push(this.free)
+      this.reservations.push(i + 1 + "");
     }
     this.getReservationsByFloor(+this.floor)
   }
@@ -70,6 +72,7 @@ export class MapComponent {
       .subscribe(response => {
         for (let reservation of response) {
           this.fill[reservation.desk.deskID - 1] = this.reserved;
+          this.reservations[(reservation.desk.deskID) -1] = reservation.user.username;
         }
       });
   }

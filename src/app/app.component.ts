@@ -36,7 +36,10 @@ export class AppComponent {
   constructor(private router: Router) {
     router.events.subscribe(_ => {
       //console.log(router.url);
-      this.open = !router.url.startsWith("/#state") && router.url != "/" && !router.url.includes("/checkin");
+      this.open = !router.url.startsWith("/#state") && router.url != "/"
+        && !router.url.includes("/checkin")
+        && !router.url.includes("/admin")
+        && !router.url.includes("/chart");
       //console.log(!router.url.startsWith("/#state"))
       //console.log(this.open)
     })

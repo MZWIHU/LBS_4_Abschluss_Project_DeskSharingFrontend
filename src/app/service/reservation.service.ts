@@ -36,7 +36,7 @@ export class ReservationService {
 
 
     let request = new Reservation(date.toDateString(),
-      new User("test@test.com", "Martin", "TEST", "ZWM", "ACPR")
+      new User(localStorage.getItem("email"), localStorage.getItem("firstName"), localStorage.getItem("lastName"), localStorage.getItem("username"), localStorage.getItem("department"))
       , new Desk(deskID, floor));
 
     //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(

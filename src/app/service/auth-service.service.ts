@@ -11,13 +11,13 @@ export class AuthService {
 
   storeInfo(userProfile: UserProfile, roles: string[]) {
     let rolesString: string = roles.join(",");
-
-
     localStorage.setItem("email", userProfile.email);
     localStorage.setItem("firstName", userProfile.firstName);
     localStorage.setItem("lastName", userProfile.lastName);
+    localStorage.setItem("username",userProfile.username);
     localStorage.setItem("token", userProfile.token);
     localStorage.setItem("roles", rolesString);
+    localStorage.setItem("department", userProfile.attributes["department"] as string);
 
   }
 

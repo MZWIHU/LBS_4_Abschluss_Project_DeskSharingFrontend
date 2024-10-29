@@ -22,7 +22,8 @@ import {KeycloakService} from "../service/keycloak-service.service";
 export class DesksharingHeaderComponent {
 
   keycloakService: KeycloakService = inject(KeycloakService);
-  protected open: boolean;
+  protected openchart: boolean;
+  protected openadmin: boolean;
 
   logout() {
     this.keycloakService.logout();
@@ -32,16 +33,20 @@ export class DesksharingHeaderComponent {
   constructor(private router: Router) {
 
     router.events.subscribe(_ => {
-      //console.log(router.url);
-      this.open = !router.url.startsWith("/#state") && router.url == "/admin";
+      console.log(router.url);
+      this.openchart = router.url.startsWith("/admin");
+      this.openadmin = router.url.startsWith("/chart");
 
     });
 
 
   }
+  admin(){
+    this.router.navigate([("admin")]);
+  }
 
   statistics() {
-    this.router.navigate([("statistics")]);
+    this.router.navigate([("chart")]);
   }
 
   protected readonly generate = generate;

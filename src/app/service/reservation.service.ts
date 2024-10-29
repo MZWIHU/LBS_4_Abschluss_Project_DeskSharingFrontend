@@ -118,4 +118,8 @@ export class ReservationService {
   getAllReservationsByUser() {
     return this.http.get<Map<string, Reservation[]>>(this.url + "/getallreservationbyusers");
   }
+
+  getAllReservationsForToday() {
+    return this.http.get<Reservation[]>(this.url + "/getallresvationsfortoday");
+  }
 }

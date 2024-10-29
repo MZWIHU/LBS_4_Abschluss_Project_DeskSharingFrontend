@@ -1,0 +1,11 @@
+.table {
+  width: 95%;
+  display: block;
+  margin: auto;
+}
+
+.filter {
+  margin-top: 25px;
+  margin-bottom: 0px;
+  width: 100%;
+}

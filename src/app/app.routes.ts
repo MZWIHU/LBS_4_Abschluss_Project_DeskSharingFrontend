@@ -6,6 +6,7 @@ import {FloorComponent} from "./floor/floor.component";
 import {ReservationOverviewComponent} from "./reservation-overview/reservation-overview.component";
 import {CheckInComponent} from "./check-in/check-in.component";
 import {GraphComponent} from "./graph/graph.component";
+import {WhereIsComponent} from "./where-is/where-is.component";
 
 
 export const routes: Routes = [
@@ -15,6 +16,7 @@ export const routes: Routes = [
   {path: 'admin', component: AdminViewComponent},
   {path: 'checkin/floor/:floor/desk/:desk', component: CheckInComponent},
   {path: 'chart', component: GraphComponent},
+  {path: 'whereis', component: WhereIsComponent}
 ];
 
 @NgModule({

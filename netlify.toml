@@ -5,5 +5,5 @@ status = 200
 
 [[redirects]]
 from = "*"
-to = "http//20.250.170.242/*"
+to = "http//20.250.170.242:8080/*"
 status = 200

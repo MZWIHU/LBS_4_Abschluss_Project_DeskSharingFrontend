@@ -14,6 +14,7 @@ export class AuthService {
     let rolesString: string = roles.join(",");
     sessionStorage.setItem("email", userProfile.email);
     sessionStorage.setItem("firstName", userProfile.firstName);
+    localStorage.setItem("firstName", userProfile.firstName);
     sessionStorage.setItem("lastName", userProfile.lastName);
     sessionStorage.setItem("username",userProfile.username);
     sessionStorage.setItem("token", userProfile.token);

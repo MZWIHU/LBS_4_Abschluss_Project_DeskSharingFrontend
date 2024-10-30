@@ -24,6 +24,7 @@ export class CheckInComponent implements OnInit {
   protected desk: string = "";
   protected reservation: Reservation;
   protected message: string = "";
+  firstName: string  = sessionStorage.getItem("firstName");
 
   ngOnInit() {
     this.getURLParams()

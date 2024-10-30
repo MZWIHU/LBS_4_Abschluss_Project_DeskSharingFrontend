@@ -52,23 +52,25 @@ export class CheckInComponent implements OnInit {
     let firstName: string = localStorage.getItem('firstName');
     let lastName: string = localStorage.getItem('lastName');
     if (this.reservation != null) {
+      console.log("!= null")
       if (this.reservation.checkedin == null) {
-        console.log(firstName + " " + lastName)
-        console.log(this.reservation.user.name + " " + this.reservation.user.surname + " CHECK NAME");
-
-        console.log(firstName + " " + lastName == this.reservation.user.name + " " + this.reservation.user.surname + " CHECK NAME")
+        console.log("checkin == null")
         if (firstName + " " + lastName == this.reservation.user.name + " " + this.reservation.user.surname) {
+          console.log("name == name")
           this.reservationService.checkIn(this.reservation).subscribe(_ => {
             this.router.navigate([""]).then(r => {
             });
           });
         } else {
           this.message = "You did not reserve this table!"
+          console.log("name == name else")
         }
       } else {
+        console.log("checkin == null else")
         this.message = "Already checked in"
       }
     } else {
+      console.log("!= null else")
       this.message = "Reservation not found!";
     }
   }

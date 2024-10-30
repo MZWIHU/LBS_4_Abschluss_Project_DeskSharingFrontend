@@ -53,6 +53,9 @@ export class CheckInComponent implements OnInit {
     let lastName: string = localStorage.getItem('lastName');
     if (this.reservation != null) {
       if (this.reservation.checkedin == null) {
+        console.log(firstName + " " + lastName)
+        console.log(this.reservation.user.name + " " + this.reservation.user.surname + " CHECK NAME");
+
         console.log(firstName + " " + lastName == this.reservation.user.name + " " + this.reservation.user.surname + " CHECK NAME")
         if (firstName + " " + lastName == this.reservation.user.name + " " + this.reservation.user.surname) {
           this.reservationService.checkIn(this.reservation).subscribe(_ => {

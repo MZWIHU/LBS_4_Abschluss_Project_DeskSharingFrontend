@@ -55,7 +55,10 @@ export class ReservationService {
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     //console.log("SEND")
-    return this.http.put(this.url + "/updatereservation", reservation, {headers: this.headers})
+    return this.http.put(this.url + "/updatereservation", reservation, {headers: this.headers}).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
+      _ => {
+        window.location.reload()
+      });
 
   }
 

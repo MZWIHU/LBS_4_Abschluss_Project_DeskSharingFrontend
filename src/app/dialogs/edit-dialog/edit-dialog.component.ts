@@ -67,10 +67,7 @@ export class EditDialogComponent implements OnInit{
 
   updateReservation() {
     this.toUpdate.date = this.dateUpdateForm.get('date').value.toDateString();
-    this.reservationService.updateReservation(this.toUpdate).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(
-      _ => {
-        window.location.reload()
-      });
+    this.reservationService.updateReservation(this.toUpdate)
   }
 
   //updates form if the user changes the input

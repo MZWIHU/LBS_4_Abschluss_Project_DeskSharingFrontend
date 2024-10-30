@@ -14,7 +14,7 @@ export class DepartmentService {
   public dataSource: MatTableDataSource<Reservation> = new MatTableDataSource<Reservation>();
   public selection =  new SelectionModel<Reservation>(true, []);
   destroyRef: DestroyRef = inject(DestroyRef)
-  url: string = "http://localhost:8090";
+  url: string = "https://desksharing-backend-keycloak-rmv.onrender.com";
 
   constructor(private http: HttpClient) {
 

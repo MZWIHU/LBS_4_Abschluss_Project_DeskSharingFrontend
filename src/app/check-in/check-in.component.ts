@@ -22,7 +22,7 @@ export class CheckInComponent implements OnInit {
   private destroyRef: DestroyRef = inject(DestroyRef);
   protected floor: string = "";
   protected desk: string = "";
-  private reservation: Reservation;
+  protected reservation: Reservation;
   protected message: string = "";
 
   ngOnInit() {
@@ -38,8 +38,12 @@ export class CheckInComponent implements OnInit {
 
   getReservation(floor: string, desk: string) {
     this.reservationService.getReservationByDesk(floor, desk).pipe(takeUntilDestroyed(this.destroyRef)).subscribe(res => {
-        this.reservation = res;
-        console.log(this.reservation);
+        if (res.date != null) {
+          this.reservation = res;
+        } else {
+          this.reservation = null;
+          console.log("NULL")
+        }
       }
     );
   }
@@ -47,15 +51,21 @@ export class CheckInComponent implements OnInit {
   checkIn() {
     let firstName: string = localStorage.getItem('firstName');
     let lastName: string = localStorage.getItem('lastName');
-
-    if (firstName + " " + lastName == this.reservation.user.name + " " + this.reservation.user.surname) {
-      this.reservationService.checkIn(this.reservation).subscribe(_ => {
-        this.router.navigate([""]).then(r => {
-        });
-      });
+    if (this.reservation != null) {
+      if (this.reservation.checkedin == null) {
+        if (firstName + " " + lastName == this.reservation.user.name + " " + this.reservation.user.surname) {
+          this.reservationService.checkIn(this.reservation).subscribe(_ => {
+            this.router.navigate([""]).then(r => {
+            });
+          });
+        } else {
+          this.message = "You did not reserve this table!"
+        }
+      } else {
+        this.message = "Already checked in"
+      }
     } else {
-      this.message = "You did not reserve this table!"
+      this.message = "Reservation not found!";
     }
-
   }
 }

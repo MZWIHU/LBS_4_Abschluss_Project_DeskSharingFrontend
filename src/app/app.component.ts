@@ -43,6 +43,7 @@ export class AppComponent implements AfterViewInit{
 
     this.mobileService.mobileCheck() ? this.mode = "over" : this.mode = "side" ;
     this.mobileService.mobileCheck() ? this.width = "25%" : this.width = "12%" ;
+    this.mobileService.mobileCheck() ? this.open = false : this.open = true ;
     router.events.subscribe(_ => {
       this.open = router.url != "/";
     })
@@ -52,7 +53,8 @@ export class AppComponent implements AfterViewInit{
       this.open = !router.url.startsWith("/#state") && router.url != "/"
         && !router.url.includes("/checkin")
         && !router.url.includes("/admin")
-        && !router.url.includes("/chart");
+        && !router.url.includes("/chart")
+        && !this.mobileService.mobileCheck();
       //console.log(!router.url.startsWith("/#state"))
       //console.log(this.open)
     })

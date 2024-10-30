@@ -102,7 +102,6 @@ export class AdminTableUserComponent implements OnInit {
   delete() {
     // console.log(this.selection.selected)
     this.departmentService.deleteMultipleReservations(this.selection.selected);
-    window.location.reload()
   }
 
   applyFilter(event: Event) {

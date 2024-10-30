@@ -44,6 +44,7 @@ export class DepartmentService {
     if (reservations.length > 0) {
       this.http.delete(this.url + "/deletemultiplereservations", {body: reservations})
         .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {
+        window.location.reload()
       });
     }
   }

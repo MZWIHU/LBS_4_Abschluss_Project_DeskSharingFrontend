@@ -44,8 +44,6 @@ export class ReservationDialogComponent implements OnInit {
 
   private dialogRef: MatDialogRef<ReservationDialogComponent> = inject(MatDialogRef<ReservationDialogComponent>);
 
-  private snackBar: MatSnackBar = inject(MatSnackBar);
-
   private pass: DialogData = inject(MAT_DIALOG_DATA)
 
   public disabled: Date[] = []
@@ -92,17 +90,11 @@ export class ReservationDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  openSnackBar() {
-    this.snackBar.open("Reserved", "", {
-      duration: 5000
-    });
-  }
-
   //function to disable dates that are already reserved
   disabledDates = (d: Date): boolean => {
     //d.setTime(new Date().getTime())
     const time = d.getDate();
-    console.log(!this.disabled.find(x => x.getDate() == time));
+    //console.log(!this.disabled.find(x => x.getDate() == time));
     return !this.disabled.find(x => x.getDate() == time);
   }
 }

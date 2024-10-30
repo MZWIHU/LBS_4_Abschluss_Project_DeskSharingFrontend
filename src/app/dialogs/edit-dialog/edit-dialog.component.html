@@ -4,7 +4,7 @@
     <form [formGroup]="dateUpdateForm">
       <mat-card class="calendar">
         <mat-calendar [selected]="dateUpdateForm.get('date').value"
-                      (selectedChange)="updateFormDate($event)"></mat-calendar>
+                      (selectedChange)="updateFormDate($event)" [dateFilter]="disabledDates"></mat-calendar>
       </mat-card>
       <button mat-stroked-button class="sub" type="button" (click)="closeDialog()">Cancel</button>
       <button mat-stroked-button class="sub" type="submit" [disabled]="!dateUpdateForm.valid" (click)="onSubmit()">

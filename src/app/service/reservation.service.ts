@@ -13,8 +13,8 @@ export class ReservationService {
 
 
   destroyRef: DestroyRef = inject(DestroyRef)
-  //url: string = "http://localhost:8080"
-  url: string = "https://desksharing-backend-keycloak-rmv.onrender.com"
+  url: string = "http://localhost:8080"
+  //url: string = "https://desksharing-backend-keycloak-rmv.onrender.com"
 
   headers: HttpHeaders = new HttpHeaders();
   http : HttpClient = inject(HttpClient)
@@ -82,7 +82,7 @@ export class ReservationService {
     this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
-    return this.http.get<Reservation>(this.url + "/getreservationsfordesk?floor=" + floor + "&deskId=" + desk, {headers: this.headers});
+    return this.http.get<Reservation[]>(this.url + "/getreservationsfordesk?floor=" + floor + "&deskId=" + desk, {headers: this.headers});
   }
 
   getReservationByDesk(floor: string, desk: string) {

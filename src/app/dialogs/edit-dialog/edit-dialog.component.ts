@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, DestroyRef, inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogContent, MatDialogRef} from "@angular/material/dialog";
 import {Reservation} from "../../domain/Reservation";
 import {ReservationService} from "../../service/reservation.service";
@@ -7,6 +7,7 @@ import {MatCard} from "@angular/material/card";
 import {MatCalendar, MatDatepickerInput} from "@angular/material/datepicker";
 import {MatButton} from "@angular/material/button";
 import {provideNativeDateAdapter} from "@angular/material/core";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-edit-dialog',
@@ -23,12 +24,16 @@ import {provideNativeDateAdapter} from "@angular/material/core";
   styleUrl: './edit-dialog.component.css',
   providers: [provideNativeDateAdapter()]
 })
-export class EditDialogComponent {
+export class EditDialogComponent implements OnInit{
   private dialogRef: MatDialogRef<EditDialogComponent> = inject(MatDialogRef<EditDialogComponent>)
 
   private pass: Reservation = inject(MAT_DIALOG_DATA)
 
   private toUpdate: Reservation;
+
+  public disabled: Date[] = []
+
+  destroyRef: DestroyRef = inject(DestroyRef);
 
   constructor(private reservationService: ReservationService) {
     this.toUpdate = this.pass;
@@ -36,6 +41,13 @@ export class EditDialogComponent {
 
   ngOnInit(): void {
     this.toUpdate = this.pass;
+    this.reservationService.getReservationsByDesk(this.pass.desk.floor +"", this.pass.desk.deskID+ "")
+      .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(resp => {
+        resp.forEach(res => {
+          this.disabled.push(new Date(res.date))
+        })
+      console.log(this.disabled)
+    })
   }
 
   dateUpdateForm = new FormGroup({
@@ -56,6 +68,7 @@ export class EditDialogComponent {
   updateReservation() {
     this.toUpdate.date = this.dateUpdateForm.get('date').value.toDateString();
     this.reservationService.updateReservation(this.toUpdate);
+    window.location.reload()
   }
 
   //updates form if the user changes the input
@@ -65,5 +78,12 @@ export class EditDialogComponent {
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  disabledDates = (d: Date): boolean => {
+    //d.setTime(new Date().getTime())
+    const time = d.getDate();
+    //console.log(!this.disabled.find(x => x.getDate() == time));
+    return !this.disabled.find(x => x.getDate() == time);
   }
 }

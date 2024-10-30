@@ -1,6 +1,6 @@
 <desksharing-header></desksharing-header>
 <mat-sidenav-container class="container">
-  <mat-sidenav mode="side" [opened]="open" class="side">
+  <mat-sidenav [mode]="mode" [opened]="open" class="side"  [style.width]="width" #sidenav>
     <button mat-button type="button" class="navbtn" style="color: black" routerLink="/overview">My Reservations</button>
     <button mat-button type="button" class="navbtn" style="color: black" routerLink="/whereis">Where is?</button>
     @for (i of numberOfFloorsCollection; track i) {

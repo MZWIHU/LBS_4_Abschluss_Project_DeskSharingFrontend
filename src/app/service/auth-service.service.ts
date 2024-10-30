@@ -7,7 +7,7 @@ import {UserProfile} from "../domain/Userprofile";
 export class AuthService {
 
   constructor() {
-    this.storeInfo({attributes: {"department": "ACPR"}, username: "ZWM", lastName: "Mustermann", firstName: "Martin", email: "test@test.com", token: "" }, ["admin"])
+    //this.storeInfo({attributes: {"department": "ACPR"}, username: "ZWM", lastName: "Mustermann", firstName: "Martin", email: "test@test.com", token: "" }, ["admin"])
   }
 
   storeInfo(userProfile: UserProfile, roles: string[]) {

@@ -8,6 +8,7 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {generate} from "rxjs";
 import {MobileService} from "../service/mobile-service.service";
 import {SidenavService} from "../service/side-nav.service";
+import {KeycloakService} from "../service/keycloak-service.service";
 
 //import {KeycloakService} from "../service/keycloak.service";
 
@@ -28,6 +29,7 @@ export class DesksharingHeaderComponent implements OnInit{
   mobile: boolean = false;
   mobileService: MobileService = inject(MobileService)
   sidenavService: SidenavService = inject(SidenavService)
+  keycloakService: KeycloakService = inject(KeycloakService);
 
   constructor(private router: Router) {
 
@@ -60,5 +62,10 @@ export class DesksharingHeaderComponent implements OnInit{
 
   toggle(){
     this.sidenavService.toggle();
+  }
+
+  logout() {
+    this.keycloakService.logout();
+    localStorage.clear();
   }
 }

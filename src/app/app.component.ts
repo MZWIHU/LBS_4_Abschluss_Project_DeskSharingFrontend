@@ -7,6 +7,7 @@ import {MatDrawerMode, MatSidenav, MatSidenavModule} from "@angular/material/sid
 import {MatButtonModule} from "@angular/material/button";
 import {MobileService} from "./service/mobile-service.service";
 import {SidenavService} from "./service/side-nav.service";
+import {KeycloakService} from "./service/keycloak-service.service";
 
 //import {KeycloakService} from "./service/keycloak.service";
 
@@ -34,6 +35,8 @@ export class AppComponent implements AfterViewInit{
   mode: MatDrawerMode;
   mobileService: MobileService = inject(MobileService)
   sidenavService: SidenavService = inject(SidenavService)
+  keycloakService: KeycloakService = inject(KeycloakService);
+
   width = "15%"
   @ViewChild('sidenav') public sidenav: MatSidenav;
 

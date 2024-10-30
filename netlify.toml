@@ -2,3 +2,7 @@
 from = "*"
 to = "/index.html"
 status = 200
+
+from = "*"
+to = "http//20.250.170.242/*"
+status = 200

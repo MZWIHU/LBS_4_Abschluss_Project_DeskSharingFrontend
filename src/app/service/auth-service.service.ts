@@ -12,30 +12,30 @@ export class AuthService {
 
   storeInfo(userProfile: UserProfile, roles: string[]) {
     let rolesString: string = roles.join(",");
-    localStorage.setItem("email", userProfile.email);
-    localStorage.setItem("firstName", userProfile.firstName);
-    localStorage.setItem("lastName", userProfile.lastName);
-    localStorage.setItem("username",userProfile.username);
-    localStorage.setItem("token", userProfile.token);
-    localStorage.setItem("roles", rolesString);
-    localStorage.setItem("department", userProfile.attributes["department"] as string);
+    sessionStorage.setItem("email", userProfile.email);
+    sessionStorage.setItem("firstName", userProfile.firstName);
+    sessionStorage.setItem("lastName", userProfile.lastName);
+    sessionStorage.setItem("username",userProfile.username);
+    sessionStorage.setItem("token", userProfile.token);
+    sessionStorage.setItem("roles", rolesString);
+    sessionStorage.setItem("department", userProfile.attributes["department"] as string);
 
   }
 
   getInfo(): UserProfile {
     let userProfile: UserProfile = new UserProfile();
 
-    userProfile.email = localStorage.getItem("email")
-    userProfile.firstName = localStorage.getItem("firstName")
-    userProfile.lastName = localStorage.getItem("lastName")
-    userProfile.token = localStorage.getItem("token")
-    userProfile.username = localStorage.getItem("username")
+    userProfile.email = sessionStorage.getItem("email")
+    userProfile.firstName = sessionStorage.getItem("firstName")
+    userProfile.lastName = sessionStorage.getItem("lastName")
+    userProfile.token = sessionStorage.getItem("token")
+    userProfile.username = sessionStorage.getItem("username")
 
     return userProfile;
   }
 
   getRoles(): string[] {
 
-    return localStorage.getItem("roles").split(",");
+    return sessionStorage.getItem("roles").split(",");
   }
 }

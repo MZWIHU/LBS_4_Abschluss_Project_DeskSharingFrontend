@@ -49,8 +49,8 @@ export class CheckInComponent implements OnInit {
   }
 
   checkIn() {
-    let firstName: string = localStorage.getItem('firstName');
-    let lastName: string = localStorage.getItem('lastName');
+    let firstName: string = sessionStorage.getItem('firstName');
+    let lastName: string = sessionStorage.getItem('lastName');
     if (this.reservation != null) {
       console.log("!= null")
       if (this.reservation.checkedin == null) {

@@ -20,18 +20,18 @@ export class ReservationService {
   http : HttpClient = inject(HttpClient)
 
   getReservation(targetID: number, floor: number): Observable<Reservation[]> {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     return this.http.get<Reservation[]>(this.url + '/getreservationsfordesk?deskId=' + targetID + "&floor=" + floor, {headers: this.headers})
   }
 
   makeReservation(date: Date, floor: number, deskID: number) {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     let request = new Reservation(date.toDateString(),
-      new User(localStorage.getItem("email"), localStorage.getItem("firstName"), localStorage.getItem("lastName"), localStorage.getItem("username"), localStorage.getItem("department"))
+      new User(sessionStorage.getItem("email"), sessionStorage.getItem("firstName"), sessionStorage.getItem("lastName"), sessionStorage.getItem("username"), sessionStorage.getItem("department"))
       , new Desk(deskID, floor));
 
     //this.http.post("https://desksharing.onrender.com/reservation", request, {headers}).subscribe(
@@ -44,14 +44,14 @@ export class ReservationService {
   }
 
   getReservationByUserMail(userMail: string): Observable<Reservation[]> {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     return this.http.get<Reservation[]>(this.url + "/getreservationbyuser?userMail=" + userMail, {headers: this.headers})
   }
 
   updateReservation(reservation: Reservation) {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     //console.log("SEND")
@@ -62,7 +62,7 @@ export class ReservationService {
   }
 
   getReservationsByFloor(floor: number) {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     return this.http.get<Reservation[]>(this.url + "/getreservationsbyfloor?floor=" + floor, {headers: this.headers})
@@ -70,7 +70,7 @@ export class ReservationService {
 
   deleteReservation(reservation: Reservation) {
     //console.log("Delete")
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     return this.http.delete(this.url + "/deletereservation", {headers: this.headers, body: reservation})
@@ -79,21 +79,21 @@ export class ReservationService {
   }
 
   getReservationsByDesk(floor: string, desk: string) {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     return this.http.get<Reservation>(this.url + "/getreservationsfordesk?floor=" + floor + "&deskId=" + desk, {headers: this.headers});
   }
 
   getReservationByDesk(floor: string, desk: string) {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     return this.http.get<Reservation>(this.url + "/getreservationfordesk?floor=" + floor + "&deskId=" + desk, {headers: this.headers});
   }
 
   checkIn(reservation: Reservation) {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     console.log("SEND")
@@ -102,14 +102,14 @@ export class ReservationService {
   }
 
   getAllReservationsByUser() {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     return this.http.get<Map<string, Reservation[]>>(this.url + "/getallreservationbyusers", {headers: this.headers});
   }
 
   getAllReservationsForToday() {
-    this.headers = this.headers.set("Authorization", "Bearer " + localStorage.getItem("token"))
+    this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
     console.log(this.headers)

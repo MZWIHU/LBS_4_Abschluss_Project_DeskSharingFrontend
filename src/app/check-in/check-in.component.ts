@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ReservationService} from "../service/reservation.service";
 import {Reservation} from "../domain/Reservation";
+import {AuthService} from "../service/auth-service.service";
 
 @Component({
   selector: 'app-check-in',
@@ -20,6 +21,7 @@ export class CheckInComponent implements OnInit {
   private route: ActivatedRoute = inject(ActivatedRoute);
   private router: Router = inject(Router);
   private destroyRef: DestroyRef = inject(DestroyRef);
+  private authService: AuthService = inject(AuthService)
   protected floor: string = "";
   protected desk: string = "";
   protected reservation: Reservation;

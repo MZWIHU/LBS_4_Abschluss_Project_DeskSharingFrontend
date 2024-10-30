@@ -13,8 +13,8 @@ export class ReservationService {
 
 
   destroyRef: DestroyRef = inject(DestroyRef)
-  url: string = "http://localhost:8080"
-  //url: string = "https://desksharing-backend-keycloak-rmv.onrender.com"
+  //url: string = "http://localhost:8080"
+  url: string = "https://desksharing-backend-keycloak-rmv.onrender.com"
 
   headers: HttpHeaders = new HttpHeaders();
   http : HttpClient = inject(HttpClient)

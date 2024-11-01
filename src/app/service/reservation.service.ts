@@ -66,6 +66,7 @@ export class ReservationService {
     this.headers = this.headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
     this.headers = this.headers.set("Content-Type", "application/json");
     this.headers = this.headers.set("Accept", "application/json");
+    this.headers = this.headers.set("Access-Control-Allow-Origin", "https://desksharing-backend.onrender.com");
     return this.http.get<Reservation[]>(this.url + "/getreservationsbyfloor?floor=" + floor, {headers: this.headers})
   }
 

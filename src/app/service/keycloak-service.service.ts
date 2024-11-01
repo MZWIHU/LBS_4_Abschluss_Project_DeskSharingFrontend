@@ -60,6 +60,6 @@ export class KeycloakService {
   }
 
   logout() {
-    return this.keycloak?.logout({redirectUri: "https://desksharing-lbs4.netlify.app"});
+    return this.keycloak?.logout({redirectUri: "https://desksharing.netlify.app"});
   }
 }

@@ -18,7 +18,7 @@ export class StatisticService {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
-    return this.httpClient.get<StatisticDays[]>('https://desksharing-backend.onrender.com/getstatdata');
+    return this.httpClient.get<StatisticDays[]>('https://desksharing-backend.onrender.com/getstatdata', {headers});
   }
 
 }

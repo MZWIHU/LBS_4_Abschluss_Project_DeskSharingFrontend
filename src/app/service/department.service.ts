@@ -15,10 +15,7 @@ export class DepartmentService {
   public selection =  new SelectionModel<Reservation>(true, []);
   destroyRef: DestroyRef = inject(DestroyRef)
   url: string = "https://desksharing-backend.onrender.com"
-
-  constructor(private http: HttpClient) {
-
-  }
+  private http: HttpClient = inject(HttpClient)
 
 
   getListOfReservationsByDepartment(map: Map<string, Reservation[]>, department: string): Reservation[] {
@@ -36,13 +33,16 @@ export class DepartmentService {
     const headers: HttpHeaders = new HttpHeaders();
     headers.set("Content-Type", "application/json");
     headers.set("Accept", "application/json");
-    return this.http.get<Map<string, Reservation[]>>(this.url + '/getalladminreservation');
+    return this.http.get<Map<string, Reservation[]>>(this.url + '/getalladminreservation', {headers});
   }
 
 
   deleteMultipleReservations(reservations: Reservation[]) {
+    const headers: HttpHeaders = new HttpHeaders();
+    headers.set("Content-Type", "application/json");
+    headers.set("Accept", "application/json");
     if (reservations.length > 0) {
-      this.http.delete(this.url + "/deletemultiplereservations", {body: reservations})
+      this.http.delete(this.url + "/deletemultiplereservations", {body: reservations, headers: headers})
         .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {
         window.location.reload()
       });

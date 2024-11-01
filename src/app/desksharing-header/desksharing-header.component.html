@@ -8,11 +8,8 @@
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
       <mat-icon class="menuIcon">more_vert</mat-icon>
     </button>
+    @if(openchart || openadmin) {
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>qr_code_scanner</mat-icon>
-        <span>Scan QR Code</span>
-      </button>
       @if (openchart) {
         <button mat-menu-item>
           <mat-icon>qr_code_2</mat-icon>
@@ -30,6 +27,7 @@
         </button>
       }
     </mat-menu>
+    }
     <button mat-fab class="btn" (click)="logout()">
       <mat-icon>logout</mat-icon>
     </button>

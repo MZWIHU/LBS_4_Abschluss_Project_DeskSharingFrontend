@@ -5,10 +5,10 @@
     }
     <span class="heading" routerLink="">DESKSHARING</span>
     <span class="example-spacer"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+    @if(openchart || openadmin) {
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
       <mat-icon class="menuIcon">more_vert</mat-icon>
     </button>
-    @if(openchart || openadmin) {
     <mat-menu #menu="matMenu">
       @if (openchart) {
         <button mat-menu-item>

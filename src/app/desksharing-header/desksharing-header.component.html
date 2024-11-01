@@ -11,10 +11,6 @@
     </button>
     <mat-menu #menu="matMenu">
       @if (openchart) {
-        <button mat-menu-item>
-          <mat-icon>qr_code_2</mat-icon>
-          <span>Generate QR Codes</span>
-        </button>
         <button mat-menu-item (click)="statistics()">
           <mat-icon>equalizer</mat-icon>
           <span>View Statistics</span>

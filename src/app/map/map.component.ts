@@ -6,6 +6,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ReservationService} from "../service/reservation.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ReservationDialogComponent} from "../dialogs/reservation-dialog/reservation-dialog.component";
+import {AuthService} from "../service/auth-service.service";
 
 @Component({
   selector: 'app-map',
@@ -23,7 +24,8 @@ export class MapComponent {
   private reservationService: ReservationService = inject(ReservationService);
   public dialog: MatDialog = inject(MatDialog);
   private route: ActivatedRoute = inject(ActivatedRoute);
-  private destroyRef: DestroyRef = inject(DestroyRef)
+  private destroyRef: DestroyRef = inject(DestroyRef);
+  private authService: AuthService = inject(AuthService);
   reservations: string[] = [];
 
 

@@ -22,6 +22,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {AdminTableUserComponent} from "../admin-table-user/admin-table-user.component";
 import { SelectionModel } from '@angular/cdk/collections';
+import {AuthService} from "../service/auth-service.service";
 
 @Component({
   selector: 'app-admin-view',
@@ -54,6 +55,8 @@ export class AdminViewComponent implements OnInit {
   department: string;
   reservations: Map<string, Reservation[]> = new Map();
   private destroyRef: DestroyRef = inject(DestroyRef);
+  private authService: AuthService = inject(AuthService);
+
 
 
   ngOnInit() {

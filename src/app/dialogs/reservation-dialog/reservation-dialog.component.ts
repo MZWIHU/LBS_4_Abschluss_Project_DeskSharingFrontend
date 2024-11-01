@@ -16,6 +16,7 @@ import {provideNativeDateAdapter} from "@angular/material/core";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {DialogData} from "../../domain/DialogData";
+import {AuthService} from "../../service/auth-service.service";
 
 
 @Component({
@@ -44,7 +45,10 @@ export class ReservationDialogComponent implements OnInit {
 
   private dialogRef: MatDialogRef<ReservationDialogComponent> = inject(MatDialogRef<ReservationDialogComponent>);
 
-  private pass: DialogData = inject(MAT_DIALOG_DATA)
+  private pass: DialogData = inject(MAT_DIALOG_DATA);
+
+  private authService: AuthService = inject(AuthService);
+
 
   public disabled: Date[] = []
 

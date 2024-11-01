@@ -8,6 +8,7 @@ import {MatCalendar, MatDatepickerInput} from "@angular/material/datepicker";
 import {MatButton} from "@angular/material/button";
 import {provideNativeDateAdapter} from "@angular/material/core";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {AuthService} from "../../service/auth-service.service";
 
 @Component({
   selector: 'app-edit-dialog',
@@ -34,6 +35,9 @@ export class EditDialogComponent implements OnInit{
   public disabled: Date[] = []
 
   destroyRef: DestroyRef = inject(DestroyRef);
+
+  private authService: AuthService = inject(AuthService);
+
 
   constructor(private reservationService: ReservationService) {
     this.toUpdate = this.pass;

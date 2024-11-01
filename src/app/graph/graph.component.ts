@@ -13,6 +13,7 @@ import {
   ApexYAxis,
   NgApexchartsModule
 } from "ng-apexcharts";
+import {AuthService} from "../service/auth-service.service";
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -39,6 +40,7 @@ export type ChartOptions = {
 })
 export class GraphComponent implements OnInit {
 
+  private authService: AuthService = inject(AuthService);
   private statisticService: StatisticService = inject(StatisticService);
   private destroyRef: DestroyRef = inject(DestroyRef);
   private times: string[] = [];

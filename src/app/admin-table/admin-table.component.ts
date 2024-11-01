@@ -17,6 +17,7 @@ import {DepartmentService} from "../service/department.service";
 import {Reservation} from "../domain/Reservation";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MatButton} from "@angular/material/button";
+import {AuthService} from "../service/auth-service.service";
 
 @Component({
   selector: 'app-admin-table',
@@ -45,7 +46,9 @@ export class AdminTableComponent implements OnInit {
   dataSource = this.departmentService.dataSource;
   private destroyRef: DestroyRef = inject(DestroyRef);
   displayedColumns: string[] = ['select', 'desk', 'date', 'user'];
-  selection = new SelectionModel<Reservation>(true)
+  selection = new SelectionModel<Reservation>(true);
+  private authService: AuthService = inject(AuthService);
+
 
   ngOnInit() {
     this.reservations = new Map<string, Reservation[]>();

@@ -9,6 +9,7 @@ import {generate} from "rxjs";
 import {MobileService} from "../service/mobile-service.service";
 import {SidenavService} from "../service/side-nav.service";
 import {KeycloakService} from "../service/keycloak-service.service";
+import {AuthService} from "../service/auth-service.service";
 
 //import {KeycloakService} from "../service/keycloak.service";
 
@@ -51,6 +52,7 @@ export class DesksharingHeaderComponent implements OnInit{
   protected readonly generate = generate;
   protected readonly webkitURL = webkitURL;
   protected readonly Location = Location;
+  private authService: AuthService = inject(AuthService);
 
   ngOnInit() {
     this.mobile = this.mobileService.mobileCheck();

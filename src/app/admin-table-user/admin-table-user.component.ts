@@ -19,6 +19,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {DepartmentService} from "../service/department.service";
 import {MatFormField, MatLabel} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
+import {AuthService} from "../service/auth-service.service";
 
 @Component({
   selector: 'app-admin-table-user',
@@ -46,7 +47,9 @@ export class AdminTableUserComponent implements OnInit {
   departmentService: DepartmentService = inject(DepartmentService);
   destroyRef: DestroyRef = inject(DestroyRef);
   reservations: Map<string, Reservation[]> = new Map();
-  res: Reservation[] =  []
+  res: Reservation[] =  [];
+  private authService: AuthService = inject(AuthService);
+
 
   selection = new SelectionModel<Reservation>(true);
 

@@ -21,6 +21,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {EditDialogComponent} from "../dialogs/edit-dialog/edit-dialog.component";
 import {DeleteDialogComponent} from "../dialogs/delete-dialog/delete-dialog.component";
 import {ReservationService} from "../service/reservation.service";
+import {AuthService} from "../service/auth-service.service";
 
 //import {DeleteDialogComponent} from "../delete-dialog/delete-dialog.component";
 
@@ -51,6 +52,7 @@ export class ReservationOverviewComponent implements OnInit {
   displayedColumns: string[] = ['desk', 'floor', 'date', 'action'];
   dialog: MatDialog = inject(MatDialog)
   dataSource: Reservation[];
+  private authService: AuthService = inject(AuthService);
 
   ngOnInit() {
 

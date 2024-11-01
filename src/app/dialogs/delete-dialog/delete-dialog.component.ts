@@ -6,6 +6,7 @@ import {MAT_DIALOG_DATA, MatDialogContent, MatDialogModule, MatDialogRef} from "
 import {ReactiveFormsModule} from "@angular/forms";
 import {Reservation} from "../../domain/Reservation";
 import {ReservationService} from "../../service/reservation.service";
+import {AuthService} from "../../service/auth-service.service";
 
 @Component({
   selector: 'app-delete-dialog',
@@ -28,6 +29,9 @@ export class DeleteDialogComponent {
   private pass: Reservation = inject(MAT_DIALOG_DATA)
 
   private reservationService = inject(ReservationService)
+
+  private authService: AuthService = inject(AuthService);
+
 
 
   delete() {

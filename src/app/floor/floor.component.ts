@@ -16,6 +16,7 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from "@angular/material/sort";
 import {MapComponent} from "../map/map.component";
 import {ReservationService} from "../service/reservation.service";
+import {AuthService} from "../service/auth-service.service";
 
 @Component({
   selector: 'app-floor',
@@ -50,7 +51,8 @@ export class FloorComponent {
   public dialog: MatDialog = inject(MatDialog);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private sanitizer: DomSanitizer = inject(DomSanitizer);
-  private destroyRef: DestroyRef = inject(DestroyRef)
+  private destroyRef: DestroyRef = inject(DestroyRef);
+  private authService: AuthService = inject(AuthService);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

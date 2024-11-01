@@ -15,9 +15,11 @@ export class StatisticService {
   }
 
   getStatistics(): Observable<StatisticDays[]> {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
+    headers = headers.set("Content-Type", "application/json");
+    headers = headers.set("Accept", "application/json");
+
     return this.httpClient.get<StatisticDays[]>('https://desksharing-backend.onrender.com/getstatdata', {headers});
   }
 

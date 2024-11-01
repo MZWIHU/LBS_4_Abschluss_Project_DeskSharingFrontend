@@ -30,17 +30,19 @@ export class DepartmentService {
   }
 
   getReservations(): Observable<Map<string, Reservation[]>> {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
+    headers = headers.set("Content-Type", "application/json");
+    headers = headers.set("Accept", "application/json");
     return this.http.get<Map<string, Reservation[]>>(this.url + '/getalladminreservation', {headers});
   }
 
 
   deleteMultipleReservations(reservations: Reservation[]) {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set("Content-Type", "application/json");
-    headers.set("Accept", "application/json");
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.set("Authorization", "Bearer " + sessionStorage.getItem("token"))
+    headers = headers.set("Content-Type", "application/json");
+    headers = headers.set("Accept", "application/json");
     if (reservations.length > 0) {
       this.http.delete(this.url + "/deletemultiplereservations", {body: reservations, headers: headers})
         .pipe(takeUntilDestroyed(this.destroyRef)).subscribe(_ => {

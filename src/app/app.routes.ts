@@ -13,7 +13,7 @@ export const routes: Routes = [
   {path: 'floor/:id', component: FloorComponent},
   {path: '', component: LandingpageComponent},
   {path: 'overview', component: ReservationOverviewComponent},
-  {path: 'admin', component: AdminViewComponent},
+  {path: 'admin-view', component: AdminViewComponent},
   {path: 'checkin/floor/:floor/desk/:desk', component: CheckInComponent},
   {path: 'chart', component: GraphComponent},
   {path: 'whereis', component: WhereIsComponent}

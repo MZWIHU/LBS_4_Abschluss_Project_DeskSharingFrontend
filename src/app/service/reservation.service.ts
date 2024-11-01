@@ -14,7 +14,7 @@ export class ReservationService {
 
   destroyRef: DestroyRef = inject(DestroyRef)
   //url: string = "http://localhost:8080"
-  url: string = "https://desksharing.onrender.com"
+  url: string = "https://desksharing-backend.onrender.com"
 
   headers: HttpHeaders = new HttpHeaders();
   http : HttpClient = inject(HttpClient)

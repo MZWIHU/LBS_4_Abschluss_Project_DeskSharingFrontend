@@ -40,9 +40,9 @@ export class AdminTableUserComponent implements OnInit {
 
   dataSource: Map<string, Reservation[]> = new Map();
   columnsToDisplay = ['name', 'department', 'email'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand', 'checkedin', 'notcheckin'];
   expandedElement: Reservation | null;
-  displayedColumns: string[] = ['select', 'desk', 'floor', 'date'];
+  displayedColumns: string[] = ['select', 'desk', 'floor', 'date', 'checkedin'];
   reservationService: ReservationService = inject(ReservationService);
   departmentService: DepartmentService = inject(DepartmentService);
   destroyRef: DestroyRef = inject(DestroyRef);
@@ -121,6 +121,26 @@ export class AdminTableUserComponent implements OnInit {
   clearSelection() {
     console.log("CLEAR")
     this.selection = new SelectionModel<Reservation>(true)
+  }
+
+  getTotalNotCheckedIn(reservations: Reservation[]) {
+    let count = 0;
+    for (let i = 0; i < reservations.length; i++) {
+      if(reservations[i].checkedin == null) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  getTotalCheckedIn(reservations: any) {
+    let count = 0;
+    for (let i = 0; i < reservations.length; i++) {
+      if(reservations[i].checkedin != null) {
+        count++;
+      }
+    }
+    return count;
   }
 }
 

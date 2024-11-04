@@ -54,6 +54,10 @@ export class WhereIsComponent implements OnInit{
   ngOnInit() {
     this.reservationService.getAllReservationsForToday().pipe(takeUntilDestroyed(this.destroyRef)).subscribe(resp => {
       this.dataSource = new MatTableDataSource<Reservation>(resp);
+      this.dataSource.filterPredicate = (data, filter) => {
+        const dataStr = data.date + data.desk.deskID + data.user.name + data.user.surname;
+        return dataStr.trim().toLowerCase().indexOf(filter) != -1;
+      }
     })
   }
 

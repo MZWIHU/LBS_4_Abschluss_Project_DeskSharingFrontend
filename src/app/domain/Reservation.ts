@@ -11,7 +11,7 @@ export class Reservation {
     this.date = date;
     this.user = user;
     this.desk = desk;
-    this.checkedin = false;
+    this.checkedin = null;
   }
 
 
@@ -27,6 +27,6 @@ export class Reservation {
 
   desk: Desk;
 
-  checkedin: boolean;
+  checkedin: Date;
 
 }

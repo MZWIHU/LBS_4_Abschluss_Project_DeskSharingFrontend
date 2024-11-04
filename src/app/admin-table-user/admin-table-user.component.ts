@@ -122,6 +122,26 @@ export class AdminTableUserComponent implements OnInit {
     console.log("CLEAR")
     this.selection = new SelectionModel<Reservation>(true)
   }
+
+  getTotalNotCheckedIn(reservations: Reservation[]) {
+    let count = 0;
+    for (let i = 0; i < reservations.length; i++) {
+      if(reservations[i].checkedin == null) {
+        count++;
+      }
+    }
+    return count;
+  }
+
+  getTotalCheckedIn(reservations: Reservation[]) {
+    let count = 0;
+    for (let i = 0; i < reservations.length; i++) {
+      if(reservations[i].checkedin != null) {
+        count++;
+      }
+    }
+    return count;
+  }
 }
 
 export interface UserData {

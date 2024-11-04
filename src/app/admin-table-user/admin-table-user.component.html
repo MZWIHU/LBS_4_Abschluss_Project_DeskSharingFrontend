@@ -14,11 +14,11 @@
 
   <ng-container matColumnDef="checkedin">
     <th mat-header-cell *matHeaderCellDef> Total checked in </th>
-    <td mat-cell *matCellDef="let element" (click)="clearSelection()"> {{ getTotalCheckedIn(element.reservations)}} </td>
+    <td mat-cell *matCellDef="let element" (click)="clearSelection()"> {{ getTotalCheckedIn(dataSource.get(element.email))}} </td>
   </ng-container>
   <ng-container matColumnDef="notcheckin">
     <th mat-header-cell *matHeaderCellDef> Total not checked in </th>
-    <td mat-cell *matCellDef="let element" (click)="clearSelection()"> {{ getTotalNotCheckedIn(element.reservations)}} </td>
+    <td mat-cell *matCellDef="let element" (click)="clearSelection()"> {{ getTotalNotCheckedIn(dataSource.get(element.email))}} </td>
   </ng-container>
   <ng-container matColumnDef="expand" (click)="clearSelection()">
     <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
@@ -68,6 +68,11 @@
           <ng-container matColumnDef="floor">
             <th mat-header-cell *matHeaderCellDef> FLOOR</th>
             <td mat-cell *matCellDef="let element"> {{ element.desk.floor }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="checkedin">
+            <th mat-header-cell *matHeaderCellDef> Checked in</th>
+            <td mat-cell *matCellDef="let element"> {{ element.checkedin }}</td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

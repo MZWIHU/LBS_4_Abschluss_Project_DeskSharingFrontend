@@ -40,7 +40,7 @@ export class AdminTableUserComponent implements OnInit {
 
   dataSource: Map<string, Reservation[]> = new Map();
   columnsToDisplay = ['name', 'department', 'email'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand', 'checkedin', 'notcheckin'];
   expandedElement: Reservation | null;
   displayedColumns: string[] = ['select', 'desk', 'floor', 'date'];
   reservationService: ReservationService = inject(ReservationService);

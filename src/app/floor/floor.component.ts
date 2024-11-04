@@ -43,7 +43,7 @@ export class FloorComponent {
   path = "";
   safePath: SafeResourceUrl = "";
   floor: string;
-  displayedColumns: string[] = ['desk', 'date', 'user'];
+  displayedColumns: string[] = ['desk', 'date', 'user', 'checkedin'];
   reservations: Reservation[] = [];
   dataSource: MatTableDataSource<Reservation>;
   svg: Object = "";
